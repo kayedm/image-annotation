@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    gap: 5px;
+}
+
+.container button {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--font-size-medium);
+    padding: 4px;
+}
+
+.container button:hover {
+    background-color: var(--border-color);
+}
+
+
+.active {
+    background-color: darkgrey;
+}
+
+.hideBtn {
+    margin-left: auto;
+}
