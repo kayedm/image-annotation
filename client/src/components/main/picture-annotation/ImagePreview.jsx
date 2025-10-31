@@ -1,11 +1,12 @@
 import React, {useRef, useState} from "react";
 import styles from "../../styles/picture-annotation/ImagePreview.module.css";
 
-export default function ImagePreview({hidePoints, setSelectedTool, onImageSelect, selectedTool, points, setPoints}) {
+export default function ImagePreview({hidePoints, selectedTool, points, setPoints}) {
     const [preview, setPreview] = useState(null);
     const [scale, setScale] = useState(1);
     const [offset, setOffset] = useState({x: 0, y: 0});
     const [dragging, setDragging] = useState(false);
+    const wasDragging = useRef(false);
     const startPos = useRef({x: 0, y: 0});
 
     const handleFileChange = (e) => {
@@ -13,7 +14,6 @@ export default function ImagePreview({hidePoints, setSelectedTool, onImageSelect
         if (!file) return;
         const url = URL.createObjectURL(file);
         setPreview(url);
-        onImageSelect?.({file, url});
     };
 
     const handleWheel = (e) => {
@@ -26,11 +26,13 @@ export default function ImagePreview({hidePoints, setSelectedTool, onImageSelect
     const handleMouseDown = (e) => {
         e.preventDefault();
         setDragging(true);
+        wasDragging.current = false;
         startPos.current = {x: e.clientX - offset.x, y: e.clientY - offset.y};
     };
 
     const handleMouseMove = (e) => {
         if (!dragging) return;
+        wasDragging.current = true;
         setOffset({
             x: e.clientX - startPos.current.x,
             y: e.clientY - startPos.current.y,
@@ -47,22 +49,29 @@ export default function ImagePreview({hidePoints, setSelectedTool, onImageSelect
     };
 
 
-    const handleMouseUp = () => setDragging(false);
+    const handleMouseUp = () => {
+        setDragging(false)
+    };
 
     const handleClick = (e) => {
-        if (!preview || dragging || !selectedTool) return;
+
+        if(wasDragging.current) {
+            wasDragging.current = false;
+            return;
+        };
+
+        if (!preview || dragging || !selectedTool ) return;
         const img = e.currentTarget.querySelector("img");
-        const rect = e.currentTarget.getBoundingClientRect();
+        const rect = img.getBoundingClientRect();
         console.log(rect);
-        const x = (e.clientX - rect.left - offset.x) / scale;
-        const y = (e.clientY - rect.top - offset.y) / scale;
+        const x = (e.clientX - rect.left) / scale;
+        const y = (e.clientY - rect.top) / scale;
 
         // stops points from being placed outside image
         if (x < 0 || y < 0 || x > img.naturalWidth || y > img.naturalHeight) return;
 
         const newPoint = {id: Date.now(), x, y, label: selectedTool || "point"};
         setPoints((prev) => [...prev, newPoint]);
-        setSelectedTool(null);
     };
 
     return (
