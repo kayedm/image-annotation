@@ -8,7 +8,7 @@ export default function ToolMenu({setHidePoints, setSelectedTool, selectedTool})
             {tools.map((tool) => (
                 <button
                     key={tool}
-                    onClick={() => setSelectedTool(tool)}
+                    onClick={() => setSelectedTool(prev => prev === tool ? null : tool)}
                     className={selectedTool === tool ? styles.active : ""}>
                     {tool}
                 </button>
