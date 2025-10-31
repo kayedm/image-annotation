@@ -17,7 +17,7 @@ export default function PictureAnnotation() {
                     <div className={styles.toolMenu}>
                         <ToolMenu setHidePoints={setHidePoints} selectedTool={selectedTool} setSelectedTool={setSelectedTool}/></div>
                     <div className={styles.image}>
-                        <ImagePreview hidePoints={hidePoints} setSelectedTool={setSelectedTool} points={points} setPoints={setPoints} selectedTool={selectedTool}/></div>
+                        <ImagePreview hidePoints={hidePoints} points={points} setPoints={setPoints} selectedTool={selectedTool}/></div>
                 </div>
                 <div className={styles.rightSide}>
                     <AnnotationCanvas group={points.label} points={points} setPoints={setPoints}/>
