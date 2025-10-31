@@ -16,9 +16,8 @@
     background-color: var(--border-color);
 }
 
-
 .active {
-    background-color: darkgrey;
+    background-color: #f1f1f1 !important;
 }
 
 .hideBtn {

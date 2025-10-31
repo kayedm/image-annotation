@@ -1,5 +1,5 @@
 .container {
-    min-width: 320px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     background-color: var(--color-green-bg);
@@ -29,7 +29,7 @@
     padding: 8px;
 }
 
-.container button {
+.deleteBtn {
     border: none;
     background: none;
     color: red;
