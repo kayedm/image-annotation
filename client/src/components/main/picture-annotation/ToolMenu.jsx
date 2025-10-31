@@ -1,6 +1,6 @@
 import styles from '../../styles/picture-annotation/ToolMenu.module.css'
 
-export default function ToolMenu({ setSelectedTool, selectedTool  }) {
+export default function ToolMenu({setHidePoints, setSelectedTool, selectedTool}) {
     const tools = ["Person", "Product", "Object", "Animal"];
 
     return (
@@ -9,14 +9,11 @@ export default function ToolMenu({ setSelectedTool, selectedTool  }) {
                 <button
                     key={tool}
                     onClick={() => setSelectedTool(tool)}
-                    className={selectedTool == tool ? styles.active : ""}
-                >
+                    className={selectedTool === tool ? styles.active : ""}>
                     {tool}
                 </button>
-
-
             ))}
-            <button className={styles.hideBtn}> Hide Points</button>
+            <button className={styles.hideBtn} onClick={ () => setHidePoints((prev) => !prev)}> Hide Points</button>
         </div>
     );
 }
