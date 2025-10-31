@@ -4,14 +4,15 @@ import {Delete, Shirt} from "lucide-react";
 export default function AnnotationCard({point, setPoints}) {
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-label={point.label}>
             <div className={styles.info}>
                 <span><Shirt size={20}/></span>
                 <div className={styles.text}>{point.label}</div>
-                <button className={styles.deleteBtn} onClick={() => setPoints((prev) => prev.filter((p) => p.id !== point.id))}><Delete /></button>
+                <button className={styles.deleteBtn}
+                        onClick={() => setPoints((prev) => prev.filter((p) => p.id !== point.id))}><Delete/></button>
             </div>
             <div className={styles.images}>
-                <div className={styles.photosText}> Photos </div>
+                <div className={styles.photosText}> Photos</div>
                 <div className={styles.photo}>
                 </div>
             </div>
