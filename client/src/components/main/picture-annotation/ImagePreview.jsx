@@ -1,19 +1,19 @@
-import React, { useRef, useState } from "react";
+import React, {useRef, useState} from "react";
 import styles from "../../styles/picture-annotation/ImagePreview.module.css";
 
-export default function ImagePreview({ onImageSelect, selectedTool, points, setPoints }) {
+export default function ImagePreview({hidePoints, setSelectedTool, onImageSelect, selectedTool, points, setPoints}) {
     const [preview, setPreview] = useState(null);
     const [scale, setScale] = useState(1);
-    const [offset, setOffset] = useState({ x: 0, y: 0 });
+    const [offset, setOffset] = useState({x: 0, y: 0});
     const [dragging, setDragging] = useState(false);
-    const startPos = useRef({ x: 0, y: 0 });
+    const startPos = useRef({x: 0, y: 0});
 
     const handleFileChange = (e) => {
         const file = e.target.files?.[0];
         if (!file) return;
         const url = URL.createObjectURL(file);
         setPreview(url);
-        onImageSelect?.({ file, url });
+        onImageSelect?.({file, url});
     };
 
     const handleWheel = (e) => {
@@ -26,7 +26,7 @@ export default function ImagePreview({ onImageSelect, selectedTool, points, setP
     const handleMouseDown = (e) => {
         e.preventDefault();
         setDragging(true);
-        startPos.current = { x: e.clientX - offset.x, y: e.clientY - offset.y };
+        startPos.current = {x: e.clientX - offset.x, y: e.clientY - offset.y};
     };
 
     const handleMouseMove = (e) => {
@@ -50,13 +50,19 @@ export default function ImagePreview({ onImageSelect, selectedTool, points, setP
     const handleMouseUp = () => setDragging(false);
 
     const handleClick = (e) => {
-        if (!preview || dragging) return;
+        if (!preview || dragging || !selectedTool) return;
+        const img = e.currentTarget.querySelector("img");
         const rect = e.currentTarget.getBoundingClientRect();
         console.log(rect);
         const x = (e.clientX - rect.left - offset.x) / scale;
         const y = (e.clientY - rect.top - offset.y) / scale;
-        const newPoint = { id: Date.now(),x, y, label: selectedTool || "point" };
+
+        // stops points from being placed outside image
+        if (x < 0 || y < 0 || x > img.naturalWidth || y > img.naturalHeight) return;
+
+        const newPoint = {id: Date.now(), x, y, label: selectedTool || "point"};
         setPoints((prev) => [...prev, newPoint]);
+        setSelectedTool(null);
     };
 
     return (
@@ -86,14 +92,15 @@ export default function ImagePreview({ onImageSelect, selectedTool, points, setP
                         className={styles.imageWrapper}
                         style={{
                             transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
-                            cursor: dragging ? "grabbing" : "crosshair",
+                            cursor: dragging ? "grabbing" : " ",
                         }}
                     >
-                        <img src={preview} alt="preview" className={styles.image} />
+                        <img src={preview} alt="preview" className={styles.image}/>
                         {points.map((p, i) => (
                             <div
                                 key={i}
-                                className={styles.point}
+                                className={!hidePoints ? styles.point : styles.hidePoints}
+                                data-label={p.label}
                                 style={{
                                     left: `${p.x}px`,
                                     top: `${p.y}px`,
