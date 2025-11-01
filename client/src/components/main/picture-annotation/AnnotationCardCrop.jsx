@@ -13,20 +13,46 @@ export default function AnnotationCardCrop({selectedImage, setShowCrop, setImage
     const [scale, setScale] = useState(1);
     const [offset, setOffset] = useState({x: 0, y: 0});
     const [dragging, setDragging] = useState(false);
+    const [cropPoints, setCropPoints] = useState([]);
+    const [hoverPoints, setHoverPoints] = useState([{x:"", y:"", height:"", width:""}]);
+    const [cropMode, setCropMode] = useState(false);
     const wasDragging = useRef(false);
     const startPos = useRef({x: 0, y: 0});
-
 
     function handleDeleteImage() {
         setImagePreview(prev => prev.filter(img => img !== selectedImage));
         setShowCrop(false);
     }
 
+
+
+    function handleImageClick (e) {
+        const rect = e.target.getBoundingClientRect();
+        const x = (e.clientX - rect.left - offset.x) / scale;
+        const y = (e.clientY - rect.top - offset.y) / scale;
+
+        if (cropPoints.length === 0) setCropPoints([{x, y}]);
+        else if (cropPoints.length === 1) setCropPoints(prev => [...prev, {x, y}]);
+        else setCropPoints([{x, y}]);
+        console.log(cropPoints);
+    }
+
+
+    function handleHoverMove() {
+
+    }
+
+    function handleSaveCrop() {
+
+    }
+
     return (
         <div className={styles.container} onClick={() => setShowCrop(false)}>
             <div className={styles.wrapper} onClick={(e) => e.stopPropagation()}>
 
-                <div className={styles.imagePreview}>
+                <div className={styles.imagePreview} onClick={(e) => handleImageClick(e)}>
+                    <div className={styles.cropBox}>
+                    </div>
                     <img
                         className={styles.image}
                         src={selectedImage}
@@ -43,6 +69,9 @@ export default function AnnotationCardCrop({selectedImage, setShowCrop, setImage
                             cursor: dragging ? "grabbing" : "grab",
                         }}
                     />
+
+                    <div className={styles.points}>
+                    </div>
                 </div>
                 <div className={styles.buttons}>
                     <button className={styles.saveBtn}>Save Crop</button>
