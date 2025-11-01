@@ -76,9 +76,9 @@ export default function ImagePreview({hidePoints, selectedTool, points, setPoint
                         }}
                     >
                         <img src={preview} alt="preview" className={styles.image}/>
-                        {points.map((p, i) => (
+                        {points.map((p) => (
                             <div
-                                key={i}
+                                key={p.id}
                                 className={!hidePoints ? styles.point : styles.hidePoints}
                                 data-label={p.label}
                                 style={{
