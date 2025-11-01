@@ -1,8 +1,8 @@
-import ImagePreview from "./picture-annotation/ImagePreview.jsx";
-import ToolMenu from "./picture-annotation/ToolMenu.jsx";
-import styles from "../styles/picture-annotation/PictureAnnotation.module.css";
+import ImagePreview from "./ImagePreview.jsx";
+import ToolMenu from "./ToolMenu.jsx";
+import styles from "./picture-annotation/PictureAnnotation.module.css";
 import React from "react";
-import AnnotationCanvas from "./picture-annotation/AnnotationCanvas.jsx";
+import AnnotationCanvas from "./AnnotationPanel.jsx";
 import {Button} from "react-bootstrap";
 
 export default function PictureAnnotation() {
@@ -14,11 +14,10 @@ export default function PictureAnnotation() {
         <div className={styles.container}>
             <div className={styles.editingArea}>
                 <div className={styles.leftSide}>
-                    <div className={styles.toolMenu}>
-                        <ToolMenu setHidePoints={setHidePoints} selectedTool={selectedTool} setSelectedTool={setSelectedTool}/></div>
-                    <div className={styles.image}>
-                        <ImagePreview hidePoints={hidePoints} points={points} setPoints={setPoints} selectedTool={selectedTool}/></div>
+                        <ToolMenu  setHidePoints={setHidePoints} selectedTool={selectedTool} setSelectedTool={setSelectedTool}/>
+                        <ImagePreview  hidePoints={hidePoints} points={points} setPoints={setPoints} selectedTool={selectedTool}/>
                 </div>
+
                 <div className={styles.rightSide}>
                     <AnnotationCanvas group={points.label} points={points} setPoints={setPoints}/>
                 </div>
