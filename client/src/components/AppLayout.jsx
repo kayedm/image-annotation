@@ -5,7 +5,7 @@ import SidebarButton from "./sidebar/SidebarButton.jsx";
 import SidebarHeader from "./sidebar/SidebarHeader.jsx";
 import SidebarFooter from "./sidebar/SidebarFooter.jsx";
 import {Flame} from "lucide-react";
-import styles from "./styles/Layout.module.css";
+import styles from "./styles/AppLayout.module.css";
 import {useState} from "react";
 import React from "react";
 
