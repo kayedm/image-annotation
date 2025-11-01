@@ -2,9 +2,13 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    margin: 0;
     background: var(--bg-app);
     color: var(--text-primary);
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 @media (prefers-color-scheme: light) {
