@@ -1,4 +1,4 @@
-import styles from "./picture-annotation/AnnotationCardPhotos.module.css";
+import styles from "./styles/AnnotationCardPhotos.module.css";
 import {PlusIcon} from "lucide-react";
 import React, {useState} from "react";
 import AnnotationCardCrop from "./AnnotationCardCrop.jsx";

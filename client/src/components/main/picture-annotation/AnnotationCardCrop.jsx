@@ -6,7 +6,7 @@ import {
     handleMouseEnter,
     handleMouseLeave
 } from "../utils/ImagePreviewUtils.jsx";
-import styles from "./picture-annotation/AnnotationCardCrop.module.css";
+import styles from "./styles/AnnotationCardCrop.module.css";
 import {useRef, useState} from "react";
 
 export default function AnnotationCardCrop({selectedImage, setShowCrop, setImagePreview}) {

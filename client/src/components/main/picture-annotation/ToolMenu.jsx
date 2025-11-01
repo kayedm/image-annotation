@@ -1,4 +1,4 @@
-import styles from './picture-annotation/ToolMenu.module.css'
+import styles from './styles/ToolMenu.module.css'
 
 export default function ToolMenu({setHidePoints, setSelectedTool, selectedTool}) {
     const tools = ["Person", "Product", "Object", "Animal"];

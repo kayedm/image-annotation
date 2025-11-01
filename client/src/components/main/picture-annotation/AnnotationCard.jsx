@@ -1,5 +1,5 @@
 import AnnotationCardInfo from "./AnnotationCardInfo";
-import styles from "./picture-annotation/AnnotationCard.module.css"
+import styles from "./styles/AnnotationCard.module.css"
 import {Delete, Shirt} from "lucide-react";
 import AnnotationCardPhotos from "./AnnotationCardPhotos.jsx";
 

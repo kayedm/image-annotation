@@ -1,5 +1,5 @@
 import React, {useRef, useState} from "react";
-import styles from "./picture-annotation/ImagePreview.module.css";
+import styles from "./styles/ImagePreview.module.css";
 import {
     handleWheel,
     handleMouseDown,

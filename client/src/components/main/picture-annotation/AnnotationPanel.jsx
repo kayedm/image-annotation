@@ -1,5 +1,5 @@
 import AnnotateCard from './AnnotationCard';
-import styles from './picture-annotation/AnnotationCanvas.module.css'
+import styles from './styles/AnnotationCanvas.module.css'
 
 export default function AnnotationCanvas({points, setPoints}) {
     return (

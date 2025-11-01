@@ -1,6 +1,6 @@
 import ImagePreview from "./ImagePreview.jsx";
 import ToolMenu from "./ToolMenu.jsx";
-import styles from "./picture-annotation/PictureAnnotation.module.css";
+import styles from "./styles/PictureAnnotation.module.css";
 import React from "react";
 import AnnotationCanvas from "./AnnotationPanel.jsx";
 import {Button} from "react-bootstrap";
