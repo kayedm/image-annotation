@@ -26,6 +26,8 @@
 .image {
     width: 500px;
     height: 500px;
+    overflow: hidden;
+    object-fit: contain;
 }
 
 .saveBtn {
@@ -44,11 +46,17 @@
 .imagePreview {
     display: flex;
     flex-direction: column;
-    margin: 8px;
     border: 1px dashed var(--color-grey-border);
     border-radius: 8px;
     background-color: #fafafa;
     overflow: hidden;
+    position: relative;
+}
+
+.points {
+    height: 25px;
+    width: 25px;
+    color: var(--color-grey-border);
 }
 
 .saveBtn:hover {
@@ -76,7 +84,6 @@
 
 .buttons {
     align-self: flex-end;
-    margin: 8px;
     display: flex;
     gap: 10px;
 }
