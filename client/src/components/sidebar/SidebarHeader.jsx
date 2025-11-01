@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/SidebarHeader.module.css"
+import styles from "./styles/SidebarHeader.module.css"
 import {PanelLeft} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 

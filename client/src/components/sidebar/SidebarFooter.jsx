@@ -1,4 +1,4 @@
-import styles from '../styles/SidebarFooter.module.css'
+import styles from './styles/SidebarFooter.module.css'
 import avatar from '../../assets/avatar.gif'
 import React from "react";
 import {useAuth} from "../context/AuthContext.jsx"

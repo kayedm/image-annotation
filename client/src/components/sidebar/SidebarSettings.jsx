@@ -1,4 +1,4 @@
-import styles from "../styles/SidebarSettings.module.css"
+import styles from "./styles/SidebarSettings.module.css"
 import {useAuth} from "../context/AuthContext.jsx";
 
 

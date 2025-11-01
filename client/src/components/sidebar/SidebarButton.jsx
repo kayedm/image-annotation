@@ -1,5 +1,5 @@
 import {NavLink} from "react-router-dom";
-import styles from "../styles/SidebarButton.module.css";
+import styles from "./styles/SidebarButton.module.css";
 
 export default function SidebarButton({children, to, color}) {
     return (

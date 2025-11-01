@@ -1,5 +1,5 @@
 import {useState} from "react";
-import styles from "../styles/SidebarGroup.module.css";
+import styles from "./styles/SidebarGroup.module.css";
 
 export default function SidebarGroup({label, children}) {
     const [open, setOpen] = useState(false);
