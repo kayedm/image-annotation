@@ -1,5 +1,5 @@
 import styles from "./styles/AnnotationCardInfo.module.css";
-import {Delete, Shirt} from "lucide-react";
+import {Delete, Shirt, Trash2} from "lucide-react";
 
 export default function AnnotationCardInfo({point, setPoints }) {
 
@@ -16,7 +16,7 @@ export default function AnnotationCardInfo({point, setPoints }) {
                 <div className={styles.label}>{point.label}</div>
                 <input onChange={e => handleTitleChange(e)} placeholder="Title"></input>
             </div>
-            <button className={styles.deleteBtn} onClick={() => setPoints((prev) => prev.filter((p) => p.id !== point.id))}><Delete/></button>
+            <button className={styles.deleteBtn} onClick={() => setPoints((prev) => prev.filter((p) => p.id !== point.id))}><Trash2 size={15} /></button>
         </div>
     )
 }
