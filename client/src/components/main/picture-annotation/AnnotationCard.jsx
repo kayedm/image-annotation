@@ -1,22 +1,14 @@
-import styles from "../../styles/picture-annotation/AnnotationCard.module.css"
+import AnnotationCardInfo from "./AnnotationCardInfo";
+import styles from "./picture-annotation/AnnotationCard.module.css"
 import {Delete, Shirt} from "lucide-react";
+import AnnotationCardPhotos from "./AnnotationCardPhotos.jsx";
 
 export default function AnnotationCard({point, setPoints}) {
 
     return (
         <div className={styles.container} data-label={point.label}>
-            <div className={styles.info}>
-                <span><Shirt size={20}/></span>
-                <div className={styles.text}>{point.label}</div>
-                <button className={styles.deleteBtn}
-                        onClick={() => setPoints((prev) => prev.filter((p) => p.id !== point.id))}><Delete/></button>
-            </div>
-            <div className={styles.images}>
-                <div className={styles.photosText}> Photos</div>
-                <div className={styles.photo}>
-                </div>
-            </div>
-
+            <AnnotationCardInfo setPoints={setPoints} point={point} />
+            <AnnotationCardPhotos setPoints={setPoints} point={point} />
         </div>
     )
 }
