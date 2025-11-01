@@ -3,7 +3,6 @@ import ToolMenu from "./ToolMenu.jsx";
 import styles from "./styles/PictureAnnotation.module.css";
 import React from "react";
 import AnnotationCanvas from "./AnnotationPanel.jsx";
-import {Button} from "react-bootstrap";
 
 export default function PictureAnnotation() {
     const [selectedTool, setSelectedTool] = React.useState(null);

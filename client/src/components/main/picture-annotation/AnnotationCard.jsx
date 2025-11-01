@@ -1,6 +1,5 @@
 import AnnotationCardInfo from "./AnnotationCardInfo";
 import styles from "./styles/AnnotationCard.module.css"
-import {Delete, Shirt} from "lucide-react";
 import AnnotationCardPhotos from "./AnnotationCardPhotos.jsx";
 
 export default function AnnotationCard({point, setPoints}) {
