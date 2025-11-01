@@ -1,5 +1,13 @@
 import React, {useRef, useState} from "react";
-import styles from "../../styles/picture-annotation/ImagePreview.module.css";
+import styles from "./picture-annotation/ImagePreview.module.css";
+import {
+    handleWheel,
+    handleMouseDown,
+    handleMouseMove,
+    handleMouseUp,
+    handleMouseEnter,
+    handleMouseLeave
+} from "../utils/ImagePreviewUtils.jsx";
 
 export default function ImagePreview({hidePoints, selectedTool, points, setPoints}) {
     const [preview, setPreview] = useState(null);
@@ -16,49 +24,12 @@ export default function ImagePreview({hidePoints, selectedTool, points, setPoint
         setPreview(url);
     };
 
-    const handleWheel = (e) => {
-        e.preventDefault();
-        const zoomSpeed = 0.1;
-        const delta = e.deltaY > 0 ? -zoomSpeed : zoomSpeed;
-        setScale((prev) => Math.min(Math.max(prev + delta, 0.3), 5));
-    };
-
-    const handleMouseDown = (e) => {
-        e.preventDefault();
-        setDragging(true);
-        wasDragging.current = false;
-        startPos.current = {x: e.clientX - offset.x, y: e.clientY - offset.y};
-    };
-
-    const handleMouseMove = (e) => {
-        if (!dragging) return;
-        wasDragging.current = true;
-        setOffset({
-            x: e.clientX - startPos.current.x,
-            y: e.clientY - startPos.current.y,
-        });
-    };
-
-    // stops page scrolling when inside the preview box
-    const handleMouseEnter = () => {
-        document.body.style.overflow = "hidden";
-    };
-
-    const handleMouseLeave = () => {
-        document.body.style.overflow = "auto";
-    };
-
-
-    const handleMouseUp = () => {
-        setDragging(false)
-    };
-
     const handleClick = (e) => {
 
         if(wasDragging.current) {
             wasDragging.current = false;
             return;
-        };
+        }
 
         if (!preview || dragging || !selectedTool ) return;
         const img = e.currentTarget.querySelector("img");
@@ -70,7 +41,7 @@ export default function ImagePreview({hidePoints, selectedTool, points, setPoint
         // stops points from being placed outside image
         if (x < 0 || y < 0 || x > img.naturalWidth || y > img.naturalHeight) return;
 
-        const newPoint = {id: Date.now(), x, y, label: selectedTool || "point"};
+        const newPoint = {id: Date.now(), x, y, label: selectedTool, title: "" };
         setPoints((prev) => [...prev, newPoint]);
     };
 
@@ -89,12 +60,12 @@ export default function ImagePreview({hidePoints, selectedTool, points, setPoint
             ) : (
                 <div
                     className={styles.previewBox}
+                    onWheel={(e) => handleWheel(e, setScale)}
+                    onMouseDown={(e) => handleMouseDown(e, setDragging, wasDragging, startPos, offset)}
+                    onMouseMove={(e) => handleMouseMove(e, dragging, wasDragging, setOffset, startPos)}
+                    onMouseUp={() => handleMouseUp(setDragging)}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
-                    onWheel={handleWheel}
-                    onMouseDown={handleMouseDown}
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={handleMouseUp}
                     onClick={handleClick}
                 >
                     <div
