@@ -38,7 +38,7 @@ export default function AnnotationCardThumbnails({setImagePreview, imagePreview}
             </label>
 
             {imagePreview.map((image) => (
-                <img src={image} className={styles.image} onClick={() => handleImageClick(image)}/>
+                <img src={image} alt="Selected Image" className={styles.image} onClick={() => handleImageClick(image)}/>
             ))}
         </div>
     )

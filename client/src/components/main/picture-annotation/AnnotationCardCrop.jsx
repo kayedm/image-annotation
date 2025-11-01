@@ -36,6 +36,7 @@ export default function AnnotationCardCrop({selectedImage, setShowCrop, setImage
                         onMouseUp={() => handleMouseUp(setDragging)}
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
+                        alt="Selected Image"
 
                         style={{
                             transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
