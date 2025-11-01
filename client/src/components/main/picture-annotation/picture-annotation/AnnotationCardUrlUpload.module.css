@@ -1,0 +1,39 @@
+.text input {
+    position: relative;
+    pointer-events: auto;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.text input:focus {
+    outline: none;
+}
+
+.uploadUrl {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.uploadUrlInput {
+    width: 80%;
+    border: 1px solid black;
+    border-radius: 4px;
+    outline: none;
+}
+
+.uploadBtn {
+    background: black;
+    border-radius: 6px;
+    border-color: var(--color-grey-border);
+    color: var(--color-grey-border);
+    padding: 6px;
+    outline: none;
+    border: none;
+}
+
+.uploadBtn:hover {
+    background-color: var(--bg-hover);
+    color: black;
+}
