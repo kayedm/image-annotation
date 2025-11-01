@@ -5,13 +5,8 @@
     height: 100vh;
     border-right: 1px solid var(--border-color);
     transition: width 0.2s;
-    overflow: hidden;
 }
 
 .sidebar[data-collapsed="true"] {
     width: 52px;
-}
-
-.footer {
-    margin-top: auto;
 }

@@ -1,5 +1,4 @@
 .container {
-    width: 500px;
     display: flex;
     flex-direction: column;
     background-color: var(--color-green-bg);
