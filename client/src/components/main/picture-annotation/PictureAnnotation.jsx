@@ -2,7 +2,7 @@ import ImagePreview from "./ImagePreview.jsx";
 import ToolMenu from "./ToolMenu.jsx";
 import styles from "./styles/PictureAnnotation.module.css";
 import React from "react";
-import AnnotationCanvas from "./AnnotationPanel.jsx";
+import AnnotationPanel from "./AnnotationPanel.jsx";
 
 export default function PictureAnnotation() {
     const [selectedTool, setSelectedTool] = React.useState(null);
@@ -13,14 +13,19 @@ export default function PictureAnnotation() {
         <div className={styles.container}>
             <div className={styles.editingArea}>
                 <div className={styles.leftSide}>
-                        <ToolMenu  setHidePoints={setHidePoints} selectedTool={selectedTool} setSelectedTool={setSelectedTool}/>
-                        <ImagePreview  hidePoints={hidePoints} points={points} setPoints={setPoints} selectedTool={selectedTool}/>
+                        <div className={styles.toolMenu}>
+                            <ToolMenu  setHidePoints={setHidePoints} selectedTool={selectedTool} setSelectedTool={setSelectedTool}/>
+                        </div>
+                        <div className={styles.imagePreview}>
+                            <ImagePreview  hidePoints={hidePoints} points={points} setPoints={setPoints} selectedTool={selectedTool}/>
+                        </div>
                 </div>
 
                 <div className={styles.rightSide}>
-                    <AnnotationCanvas group={points.label} points={points} setPoints={setPoints}/>
+                    <AnnotationPanel group={points.label} points={points} setPoints={setPoints}/>
                 </div>
             </div>
         </div>
     )
 }
+
