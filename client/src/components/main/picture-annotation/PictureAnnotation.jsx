@@ -21,11 +21,6 @@ export default function PictureAnnotation() {
                     <AnnotationCanvas group={points.label} points={points} setPoints={setPoints}/>
                 </div>
             </div>
-
-            <div className={styles.bottomBtns}>
-                <button className={styles.submitBtn}>Submit</button>
-                <button className={styles.resetBtn}>Reset</button>
-            </div>
         </div>
     )
 }
