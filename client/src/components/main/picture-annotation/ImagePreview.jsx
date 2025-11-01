@@ -15,6 +15,7 @@ export default function ImagePreview({hidePoints, selectedTool, points, setPoint
     const [offset, setOffset] = useState({x: 0, y: 0});
     const [dragging, setDragging] = useState(false);
     const wasDragging = useRef(false);
+    const nextId = useRef(1);
     const startPos = useRef({x: 0, y: 0});
 
     const handleFileChange = (e) => {
@@ -41,7 +42,7 @@ export default function ImagePreview({hidePoints, selectedTool, points, setPoint
         // stops points from being placed outside image
         if (x < 0 || y < 0 || x > img.naturalWidth || y > img.naturalHeight) return;
 
-        const newPoint = {id: Date.now(), x, y, label: selectedTool, title: "" };
+        const newPoint = {id: nextId.current++, x, y, label: selectedTool, title: "" };
         setPoints((prev) => [...prev, newPoint]);
     };
 
