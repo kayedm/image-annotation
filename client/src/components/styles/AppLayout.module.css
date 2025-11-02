@@ -14,5 +14,12 @@
 }
 
 .footer {
+    transition: opacity 0.2s ease;
+    opacity: 1;
     margin-top: auto;
+}
+
+:global([data-collapsed="true"]) .footer {
+    opacity: 0;
+    pointer-events: none;
 }
