@@ -1,0 +1,42 @@
+.saveBtn {
+    background: black;
+    width: 90px;
+    border-radius: 6px;
+    border-color: var(--color-grey-border);
+    color: var(--color-grey-border);
+    cursor: pointer;
+    padding: 6px;
+    outline: none;
+    border: none;
+    font-size: small;
+}
+
+.saveBtn:hover {
+    background-color: var(--bg-hover);
+    color: black;
+}
+
+.deleteBtn {
+    background: #be2929;
+    width: 90px;
+    border-radius: 6px;
+    border-color: var(--color-grey-border);
+    color: var(--color-grey-border);
+    cursor: pointer;
+    padding: 6px;
+    outline: none;
+    border: none;
+    font-size: small;
+}
+
+.deleteBtn:hover {
+    background-color: var(--bg-hover);
+    color: black;
+}
+
+.buttons {
+    align-self: flex-end;
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}

@@ -1,3 +1,9 @@
+.wrapper {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
 .container {
     position: fixed;
     inset: 0;
@@ -30,19 +36,6 @@
     object-fit: contain;
 }
 
-.saveBtn {
-    background: black;
-    width: 90px;
-    border-radius: 6px;
-    border-color: var(--color-grey-border);
-    color: var(--color-grey-border);
-    cursor: pointer;
-    padding: 6px;
-    outline: none;
-    border: none;
-    font-size: small;
-}
-
 .imagePreview {
     display: flex;
     flex-direction: column;
@@ -61,6 +54,7 @@
 .imagePreview {
     position: relative;
     display: inline-block;
+    height: 100%;
 }
 
 .image {
@@ -76,33 +70,3 @@
     pointer-events: none;
     z-index: 2;
 }
-
-.saveBtn:hover {
-    background-color: var(--bg-hover);
-    color: black;
-}
-
-.deleteBtn {
-    background: #be2929;
-    width: 90px;
-    border-radius: 6px;
-    border-color: var(--color-grey-border);
-    color: var(--color-grey-border);
-    cursor: pointer;
-    padding: 6px;
-    outline: none;
-    border: none;
-    font-size: small;
-}
-
-.deleteBtn:hover {
-    background-color: var(--bg-hover);
-    color: black;
-}
-
-.buttons {
-    align-self: flex-end;
-    display: flex;
-    gap: 10px;
-}
-
