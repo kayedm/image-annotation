@@ -16,6 +16,7 @@ export default function ImagePreview({hidePoints, selectedTool, points, setPoint
     const [dragging, setDragging] = useState(false);
     const wasDragging = useRef(false);
     const nextId = useRef(1);
+    const containerRef = useRef(null);
     const startPos = useRef({x: 0, y: 0});
 
     const handleFileChange = (e) => {
@@ -61,7 +62,7 @@ export default function ImagePreview({hidePoints, selectedTool, points, setPoint
             ) : (
                 <div
                     className={styles.previewBox}
-                    onWheel={(e) => handleWheel(e, setScale)}
+                    onWheel={(e) => handleWheel(e, setScale, offset, setOffset, containerRef)}
                     onMouseDown={(e) => handleMouseDown(e, setDragging, wasDragging, startPos, offset)}
                     onMouseMove={(e) => handleMouseMove(e, dragging, wasDragging, setOffset, startPos)}
                     onMouseUp={() => handleMouseUp(setDragging)}
@@ -69,7 +70,7 @@ export default function ImagePreview({hidePoints, selectedTool, points, setPoint
                     onMouseLeave={handleMouseLeave}
                     onClick={handleClick}
                 >
-                    <div
+                    <div ref={containerRef}
                         className={styles.imageWrapper}
                         style={{
                             transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
