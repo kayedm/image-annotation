@@ -4,17 +4,6 @@ import { useRef, useState } from "react";
 export default function AnnotationCardCropPreview({selectedImage, cropPoints , setCropPoints}) {
     const [hoverBox, setHoverBox] = useState(null);
     const imgRef = useRef(null);
-    const [imgRect, setImgRect] = useState(null);
-
-    const handleImageLoad = (e) => {
-        const rect = e.target.getBoundingClientRect();
-        setImgRect({
-            width: rect.width,
-            height: rect.height,
-            naturalWidth: e.target.naturalWidth,
-            naturalHeight: e.target.naturalHeight,
-        });
-    };
 
     const getImageCoords = (e) => {
         const rect = e.target.getBoundingClientRect();
@@ -62,7 +51,6 @@ export default function AnnotationCardCropPreview({selectedImage, cropPoints , s
                 <img
                     ref={imgRef}
                     src={selectedImage}
-                    onLoad={handleImageLoad}
                     className={styles.image}
                     alt="Selected"
                     draggable={false}
