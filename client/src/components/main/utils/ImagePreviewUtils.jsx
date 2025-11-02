@@ -2,7 +2,7 @@
 export function handleWheel(e, setScale) {
     e.preventDefault();
     const zoomSpeed = 0.1;
-    const delta = e.deltaY > 0 ? -zoomSpeed : zoomSpeed;
+    const delta = e.deltaY < 0 ? zoomSpeed : -zoomSpeed;
     setScale(prev => Math.min(Math.max(prev + delta, 0.3), 5));
 }
 
@@ -11,7 +11,13 @@ export function handleMouseDown(e, setDragging, wasDragging, startPos, offset) {
     e.preventDefault();
     setDragging(true);
     wasDragging.current = false;
-    startPos.current = { x: e.clientX - offset.x, y: e.clientY - offset.y };
+    startPos.current = {
+        x: e.clientX - offset.x,
+        y: e.clientY - offset.y
+    };
+
+    // Listen globally so drag ends even if cursor leaves the element
+    window.addEventListener("mouseup", () => handleMouseUp(setDragging), { once: true });
 }
 
 // While dragging
@@ -20,7 +26,7 @@ export function handleMouseMove(e, dragging, wasDragging, setOffset, startPos) {
     wasDragging.current = true;
     setOffset({
         x: e.clientX - startPos.current.x,
-        y: e.clientY - startPos.current.y,
+        y: e.clientY - startPos.current.y
     });
 }
 
@@ -36,5 +42,6 @@ export function handleMouseEnter() {
 
 // Re-enable scroll when mouse leaves preview
 export function handleMouseLeave() {
+    // only re-enable scroll if not dragging
     document.body.style.overflow = "auto";
 }
