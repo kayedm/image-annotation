@@ -1,7 +1,7 @@
-import styles from "./styles/AnnotationCardPhotos.module.css";
+import styles from "./styles/AnnotationCardThumbnails.module.css";
+import AnnotationCardCrop from "./AnnotationCardCrop.jsx";
 import {PlusIcon} from "lucide-react";
 import React, {useState} from "react";
-import AnnotationCardCrop from "./AnnotationCardCrop.jsx";
 
 export default function AnnotationCardThumbnails({setImagePreview, imagePreview}) {
     const [showCrop, setShowCrop] = useState(false);
