@@ -1,83 +1,134 @@
-import {
-    handleWheel,
-    handleMouseDown,
-    handleMouseMove,
-    handleMouseUp,
-    handleMouseEnter,
-    handleMouseLeave
-} from "../utils/ImagePreviewUtils.jsx";
 import styles from "./styles/AnnotationCardCrop.module.css";
-import {useRef, useState} from "react";
+import {useState, useRef} from "react";
 
 export default function AnnotationCardCrop({selectedImage, setShowCrop, setImagePreview}) {
-    const [scale, setScale] = useState(1);
-    const [offset, setOffset] = useState({x: 0, y: 0});
-    const [dragging, setDragging] = useState(false);
     const [cropPoints, setCropPoints] = useState([]);
-    const [hoverPoints, setHoverPoints] = useState([{x:"", y:"", height:"", width:""}]);
-    const [cropMode, setCropMode] = useState(false);
-    const wasDragging = useRef(false);
-    const startPos = useRef({x: 0, y: 0});
+    const [hoverBox, setHoverBox] = useState(null);
+    const imgRef = useRef(null);
+    const [imgRect, setImgRect] = useState(null);
 
-    function handleDeleteImage() {
-        setImagePreview(prev => prev.filter(img => img !== selectedImage));
+    const handleDeleteImage = () => {
+        setImagePreview(prev => prev.filter(i => i !== selectedImage));
         setShowCrop(false);
-    }
+    };
 
-
-
-    function handleImageClick (e) {
+    const handleImageLoad = e => {
         const rect = e.target.getBoundingClientRect();
-        const x = (e.clientX - rect.left - offset.x) / scale;
-        const y = (e.clientY - rect.top - offset.y) / scale;
+        setImgRect({
+            width: rect.width,
+            height: rect.height,
+            naturalWidth: e.target.naturalWidth,
+            naturalHeight: e.target.naturalHeight
+        });
+    };
 
-        if (cropPoints.length === 0) setCropPoints([{x, y}]);
-        else if (cropPoints.length === 1) setCropPoints(prev => [...prev, {x, y}]);
-        else setCropPoints([{x, y}]);
-        console.log(cropPoints);
-    }
+    const getImageCoords = e => {
+        const rect = e.target.getBoundingClientRect();
+        const xRatio = e.target.naturalWidth / rect.width;
+        const yRatio = e.target.naturalHeight / rect.height;
+        const screenX = e.clientX - rect.left;
+        const screenY = e.clientY - rect.top;
+        return {
+            imgX: screenX * xRatio,
+            imgY: screenY * yRatio,
+            viewX: screenX,
+            viewY: screenY
+        };
+    };
 
+    const handleImageClick = e => {
+        const {imgX, imgY, viewX, viewY} = getImageCoords(e);
+        const point = {imgX, imgY, viewX, viewY};
 
-    function handleHoverMove() {
+        if (cropPoints.length === 0) setCropPoints([point]);
+        else if (cropPoints.length === 1) setCropPoints(p => [...p, point]);
+        else setCropPoints([point]);
+    };
 
-    }
+    const handleHoverMove = e => {
+        if (cropPoints.length !== 1) return;
+        const {viewX, viewY} = getImageCoords(e);
+        const p1 = cropPoints[0];
+        setHoverBox({
+            x: Math.min(p1.viewX, viewX),
+            y: Math.min(p1.viewY, viewY),
+            w: Math.abs(p1.viewX - viewX),
+            h: Math.abs(p1.viewY - viewY)
+        });
+    };
 
-    function handleSaveCrop() {
+    const handleSaveCrop = () => {
+        if (cropPoints.length !== 2) return;
 
-    }
+        const [p1, p2] = cropPoints;
+        const crop = {
+            x: Math.min(p1.imgX, p2.imgX),
+            y: Math.min(p1.imgY, p2.imgY),
+            w: Math.abs(p1.imgX - p2.imgX),
+            h: Math.abs(p1.imgY - p2.imgY)
+        };
+
+        const img = new Image();
+        img.src = selectedImage;
+        img.onload = () => {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            canvas.width = crop.w;
+            canvas.height = crop.h;
+            ctx.drawImage(img, crop.x, crop.y, crop.w, crop.h, 0, 0, crop.w, crop.h);
+            const out = canvas.toDataURL("image/png");
+            setImagePreview(prev => prev.map(i => (i === selectedImage ? out : i)));
+            setShowCrop(false);
+        };
+    };
 
     return (
         <div className={styles.container} onClick={() => setShowCrop(false)}>
-            <div className={styles.wrapper} onClick={(e) => e.stopPropagation()}>
-
-                <div className={styles.imagePreview} onClick={(e) => handleImageClick(e)}>
-                    <div className={styles.cropBox}>
-                    </div>
+            <div className={styles.wrapper} onClick={e => e.stopPropagation()}>
+                <div
+                    className={styles.imagePreview}
+                    onClick={handleImageClick}
+                    onMouseMove={handleHoverMove}
+                >
                     <img
-                        className={styles.image}
+                        ref={imgRef}
                         src={selectedImage}
-                        onWheel={(e) => handleWheel(e, setScale)}
-                        onMouseDown={(e) => handleMouseDown(e, setDragging, wasDragging, startPos, offset)}
-                        onMouseMove={(e) => handleMouseMove(e, dragging, wasDragging, setOffset, startPos)}
-                        onMouseUp={() => handleMouseUp(setDragging)}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                        alt="Selected Image"
-
-                        style={{
-                            transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
-                            cursor: dragging ? "grabbing" : "grab",
-                        }}
+                        onLoad={handleImageLoad}
+                        className={styles.image}
+                        alt="Selected"
+                        draggable={false}
                     />
 
-                    <div className={styles.points}>
-                    </div>
+                    {hoverBox && cropPoints.length === 1 && (
+                        <div
+                            className={styles.hoverBox}
+                            style={{
+                                left: hoverBox.x,
+                                top: hoverBox.y,
+                                width: hoverBox.w,
+                                height: hoverBox.h
+                            }}
+                        />
+                    )}
+
+                    {cropPoints.length === 2 && (
+                        <div
+                            className={styles.cropBox}
+                            style={{
+                                left: Math.min(cropPoints[0].viewX, cropPoints[1].viewX),
+                                top: Math.min(cropPoints[0].viewY, cropPoints[1].viewY),
+                                width: Math.abs(cropPoints[0].viewX - cropPoints[1].viewX),
+                                height: Math.abs(cropPoints[0].viewY - cropPoints[1].viewY)
+                            }}
+                        />
+                    )}
                 </div>
+
                 <div className={styles.buttons}>
-                    <button className={styles.saveBtn}>Save Crop</button>
+                    <button onClick={handleSaveCrop} className={styles.saveBtn}>Save Crop</button>
                     <button onClick={handleDeleteImage} className={styles.deleteBtn}>Delete Image</button>
                 </div>
             </div>
         </div>
-    )
+    );
 }
