@@ -133,10 +133,10 @@ function clampOffset(offset, scale, containerRef, imgRef) {
     const minX = Math.min(cw - sw - padding, padding);
     const minY = Math.min(ch - sh - padding, padding);
     const maxX = padding;
-    const maxY = padding;
+
     return {
         x: Math.min(Math.max(offset.x, minX), maxX),
-        y: Math.min(Math.max(offset.y, minY), maxY),
+        y: Math.min(Math.max(offset.y, minY), padding),
     };
 }
 
