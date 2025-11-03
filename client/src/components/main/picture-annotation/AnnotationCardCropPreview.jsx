@@ -1,4 +1,4 @@
-import styles from "./styles/AnnotationCardCrop.module.css";
+import styles from "./styles/AnnotationCardCropPreview.module.css";
 import { useRef, useState } from "react";
 
 export default function AnnotationCardCropPreview({selectedImage, cropPoints , setCropPoints}) {
