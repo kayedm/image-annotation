@@ -13,8 +13,6 @@ export default function AppLayout() {
 
     const [onClose, setOnClose] = useState(false);
 
-    console.log(onClose);
-
     return (
         <div className={styles.layout}>
 

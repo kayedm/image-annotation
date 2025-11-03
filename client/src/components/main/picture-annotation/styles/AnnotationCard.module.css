@@ -1,28 +1,38 @@
 .container {
     display: flex;
     flex-direction: column;
-    background-color: var(--color-green-bg);
-    border: 1px solid var(--color-green-border);
+    background-color: var(--color-grey-bg);
+    border: 1px solid var(--color-grey-border);
     border-radius: var(--border-radius);
     font-size: var(--font-size-small);
-}
-
-.container[data-label="Animal"] {
-    background-color: var(--color-red-bg);
-    border-color: var(--color-red-border);
-}
-
-.container[data-label="Product"] {
-    background-color: var(--color-blue-bg);
-    border-color: var(--color-blue-border);
-}
-
-.container[data-label="Object"] {
-    background-color: var(--color-purple-bg);
-    border-color: var(--color-purple-border);
 }
 
 .container[data-label="Person"] {
     background-color: var(--color-green-bg);
     border-color: var(--color-green-border);
+}
+
+.container[data-label="Clothing"] {
+    background-color: var(--color-red-bg);
+    border-color: var(--color-red-border);
+}
+
+.container[data-label="Object"] {
+    background-color: var(--color-blue-bg);
+    border-color: var(--color-blue-border);
+}
+
+.container[data-label="Animal"] {
+    background-color: var(--color-purple-bg);
+    border-color: var(--color-purple-border);
+}
+
+.container[data-label="Location"] {
+    background-color: var(--color-yellow-bg);
+    border-color: var(--color-yellow-border);
+}
+
+.container[data-label="Landmark"] {
+    background-color: var(--color-teal-bg);
+    border-color: var(--color-teal-border);
 }

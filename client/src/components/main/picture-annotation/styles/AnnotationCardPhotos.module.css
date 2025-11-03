@@ -6,8 +6,30 @@
     padding: 8px;
     display: flex;
     flex-direction: column;
+
+}
+
+.contentWrapper {
+    overflow: hidden;
+    max-height: 1000px;
+    opacity: 1;
+    transition: max-height 0.15s ease, opacity 0.15s ease;
+}
+
+.hidden {
+    max-height: 0;
+    opacity: 0;
 }
 
 .addIcon {
+    color: grey;
+}
+
+.photosText {
+    display: flex;
+}
+
+.icon {
+    margin-left: auto;
     color: grey;
 }

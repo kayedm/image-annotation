@@ -1,5 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
+:root {
+        /* Existing colors */
+        --color-green-bg: #E9FBF0;
+        --color-green-border: #A7E6B9;
+
+        --color-blue-bg: #EAF5FB;
+        --color-blue-border: #A3CBE3;
+
+        --color-beige-bg: #FFFBEF;
+        --color-beige-border: #E8E1C2;
+
+        --color-red-bg: #FDECEC;
+        --color-red-border: #E3A3A3;
+
+        --color-purple-bg: #F4EAFB;
+        --color-purple-border: #C5A3E3;
+
+        --color-grey-bg: #F5F5F5;
+        --color-grey-border: #D1D1D1;
+
+        --color-pink-bg: #FCE4EC;
+        --color-pink-border: #E8A8C3;
+
+        --color-teal-bg: #E0FAF8;
+        --color-teal-border: #9CDAD6;
+
+        --color-yellow-bg: #FFFBE5;
+        --color-yellow-border: #E8DD9C;
+
+        --color-orange-bg: #FFF2E5;
+        --color-orange-border: #F5C29C;
+
+        --color-brown-bg: #F8F3EF;
+        --color-brown-border: #D5BFAE;
+
+        --color-charcoal-bg: #F2F3F4;
+        --color-charcoal-border: #B3B8BC;
+
+        --color-cyan-bg: #E6FBFB;
+        --color-cyan-border: #A1E4E4;
+
+        --color-lavender-bg: #F6F2FF;
+        --color-lavender-border: #C8B7F0;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background: var(--bg-app);
@@ -32,24 +77,6 @@ body {
         --border-color: #e6e6e6;
         --border-radius: 9px;
         --border-radius-medium: 12px;
-
-        --color-green-bg: #E9FBF0;
-        --color-green-border: #A7E6B9;
-
-        --color-blue-bg: #EAF5FB;
-        --color-blue-border: #A3CBE3;
-
-        --color-beige-bg: #FFFBEF;
-        --color-beige-border: #E8E1C2;
-
-        --color-red-bg: #FDECEC;
-        --color-red-border: #E3A3A3;
-
-        --color-purple-bg: #F4EAFB;
-        --color-purple-border: #C5A3E3;
-
-        --color-grey-bg: #F5F5F5;
-        --color-grey-border: #D1D1D1;
     }
 }
 
