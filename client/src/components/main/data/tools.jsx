@@ -10,6 +10,5 @@ export const tools = [
 ];
 
 export function toolLookup(point) {
-    const tool = tools.find(tool => tool.label === point.label)
-    return tool;
+    return tools.find(t => t.label === point.label);
 }
