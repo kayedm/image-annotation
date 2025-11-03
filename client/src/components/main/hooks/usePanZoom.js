@@ -132,13 +132,13 @@ function clampOffset(offset, scale, containerRef, imgRef) {
     const padding = 400;
     const minX = Math.min(cw - sw - padding, padding);
     const minY = Math.min(ch - sh - padding, padding);
-    const maxX = padding;
 
     return {
-        x: Math.min(Math.max(offset.x, minX), maxX),
+        x: Math.min(Math.max(offset.x, minX), padding),
         y: Math.min(Math.max(offset.y, minY), padding),
     };
 }
+
 
 function getTouchDistance(touches) {
     const [t1, t2] = touches;
