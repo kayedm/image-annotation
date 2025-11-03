@@ -1,10 +1,28 @@
 // Zoom with scroll wheel
-export function handleWheel(e, setScale) {
+export function handleWheel(e, setScale, offset, setOffset, containerRef) {
     e.preventDefault();
     const zoomSpeed = 0.1;
-    const delta = e.deltaY < 0 ? zoomSpeed : -zoomSpeed;
-    setScale(prev => Math.min(Math.max(prev + delta, 0.3), 5));
+    const delta = e.deltaY < 0 ? 1 + zoomSpeed : 1 - zoomSpeed;
+
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+
+    const cursorX = e.clientX - rect.left;
+    const cursorY = e.clientY - rect.top;
+
+    setScale(prevScale => {
+        const newScale = Math.min(Math.max(prevScale * delta, 0.3), 5);
+        const zoomFactor = newScale / prevScale;
+        
+        setOffset(prevOffset => ({
+            x: cursorX - (cursorX - prevOffset.x) * zoomFactor,
+            y: cursorY - (cursorY - prevOffset.y) * zoomFactor
+        }));
+
+        return newScale;
+    });
 }
+
 
 // Start dragging
 export function handleMouseDown(e, setDragging, wasDragging, startPos, offset) {
