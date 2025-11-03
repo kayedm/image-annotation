@@ -4,6 +4,11 @@
     margin: 8px;
 }
 
+.icon {
+    align-items: center;
+    margin-right: 2px;
+}
+
 .text {
     display: flex;
     flex-direction: column;

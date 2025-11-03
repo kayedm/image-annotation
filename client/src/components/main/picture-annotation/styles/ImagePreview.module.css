@@ -1,24 +1,26 @@
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 90%;
-    width: 600px;
+    align-items: stretch;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
     border: 1px dashed var(--color-grey-border);
     border-radius: 8px;
     background-color: #fafafa;
+    box-sizing: border-box;
 }
 
 .uploadBox {
     display: flex;
+    width: 100%;
+    height: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    width: 100%;
     cursor: pointer;
     font-size: var(--font-size-medium);
+    transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .uploadBox:hover {
@@ -31,56 +33,76 @@
 }
 
 .previewBox {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     position: relative;
-    width: 100%;
-    height: 100%;
     border-radius: 8px;
     overscroll-behavior: contain;
-}
-
-.image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 2px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 }
 
 .imageWrapper {
     position: relative;
+    display: inline-block;
     transform-origin: top left;
+    touch-action: none;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 2px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    user-select: none;
+    pointer-events: none;
 }
 
 .point {
     position: absolute;
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background-color: #ff4444;
     border: 2px solid white;
     transform: translate(-50%, -50%);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     pointer-events: none;
     z-index: 10;
+    transition: opacity 0.2s ease;
 }
 
 .hidePoints {
     opacity: 0;
 }
 
-.point[data-label="Animal"] {
-    background-color: var(--color-red-border);
+.point[data-label="Person"] {
+    background-color: var(--color-green-bg);
+    border-color: var(--color-green-border);
 }
 
-.point[data-label="Product"] {
-    background-color: var(--color-blue-border);
+.point[data-label="Clothing"] {
+    background-color: var(--color-red-bg);
+    border-color: var(--color-red-border);
 }
 
 .point[data-label="Object"] {
-    background-color: var(--color-purple-border);
+    background-color: var(--color-blue-bg);
+    border-color: var(--color-blue-border);
 }
 
-.point[data-label="Person"] {
-    background-color: var(--color-green-border);
+.point[data-label="Animal"] {
+    background-color: var(--color-purple-bg);
+    border-color: var(--color-purple-border);
+}
+
+.point[data-label="Location"] {
+    background-color: var(--color-yellow-bg);
+    border-color: var(--color-yellow-border);
+}
+
+.point[data-label="Landmark"] {
+    background-color: var(--color-teal-bg);
+    border-color: var(--color-teal-border);
 }
