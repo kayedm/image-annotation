@@ -3,8 +3,10 @@ import { tools } from '../data/tools.jsx'
 
 export default function ToolMenu({setHidePoints, setSelectedTool, selectedTool}) {
 
+    /* eslint-disable no-unused-vars */
     return (
         <div className={styles.container}>
+
             {tools.map(({label, icon: Icon }) => (
                 <button
                     key={label}
