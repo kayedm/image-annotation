@@ -20,8 +20,18 @@ export default function AnnotationCardCropPreview({selectedImage, cropPoints , s
     };
 
     const handleImageClick = (e) => {
-        const { imgX, imgY, viewX, viewY } = getImageCoords(e);
+        const { imgX, imgY, viewX, viewY, } = getImageCoords(e);
         const point = { imgX, imgY, viewX, viewY };
+
+        const img = imgRef.current;
+        const rect = img.getBoundingClientRect();
+        const screenX = e.clientX - rect.left;
+        const screenY = e.clientY - rect.top;
+
+        if (screenX < 0 || screenY < 0 || screenX > rect.width || screenY > rect.height) {
+            setHoverBox(null);
+            return;
+        }
 
         if (cropPoints.length === 0) setCropPoints([point]);
         else if (cropPoints.length === 1) setCropPoints((p) => [...p, point]);
