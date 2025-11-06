@@ -1,5 +1,3 @@
-import ImagePreview from "./ImagePreview.jsx";
-import ToolMenu from "./ToolMenu.jsx";
 import styles from "./styles/PictureAnnotation.module.css";
 import React from "react";
 import AnnotationPanel from "./AnnotationPanel.jsx";
