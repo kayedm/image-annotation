@@ -44,19 +44,19 @@
 }
 
 .photos::-webkit-scrollbar {
-    height: 6px;                  /* thinner horizontal scrollbar */
+    height: 6px;
 }
 
 .photos::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2); /* light grey thumb */
+    background-color: rgba(0, 0, 0, 0.2);
     border-radius: 4px;
 }
 
 .photos::-webkit-scrollbar-track {
-    background: transparent;       /* no background */
+    background: transparent;
 }
 
 .photos {
-    scrollbar-width: thin;         /* Firefox */
+    scrollbar-width: thin;
     scrollbar-color: rgba(0,0,0,0.2) transparent;
 }
