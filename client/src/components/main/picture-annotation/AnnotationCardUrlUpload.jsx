@@ -11,7 +11,7 @@ export default function AnnotationCardUrlUpload({setUrlInput, urlInput, setImage
     }
 
     return (
-        <div className={styles.uploadUrl}>
+        <div className={styles.container}>
             <input
                 type="text"
                 onChange={e => setUrlInput(e.target.value)}

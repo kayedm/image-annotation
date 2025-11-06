@@ -1,17 +1,16 @@
 .container {
     display: flex;
     flex-direction: column;
-    align-content: center;
-    box-sizing: border-box;
-    height: 100%;
+    flex: 1;
+    min-height: 0;
 }
 
 .editingArea {
     display: flex;
-    flex: 1;
     flex-direction: row;
-    gap: 8px;
-    min-height: 0;
+    gap: 16px;
+    height: 100%;
+    width: 100%;
 }
 
 .leftSide {
@@ -19,34 +18,14 @@
     flex-direction: column;
     border: 1px solid var(--color-grey-border);
     border-radius: 15px;
+    width: 75%;
     padding: 16px;
-    min-height: 0;
 }
 
 .rightSide {
-    flex: 1;
     border: 1px solid var(--color-grey-border);
     border-radius: 15px;
     overflow: hidden;
-    min-height: 0;
+    padding: 16px;
+    min-width: 25%;
 }
-
-.toolMenu {
-    height: 50px;
-}
-
-.imagePreview {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    min-height: 0;
-}
-
-.imagePreview img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-

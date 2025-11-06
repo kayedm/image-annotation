@@ -28,9 +28,9 @@ export default function AppLayout() {
                 </Sidebar>
             </div>
             <div className={styles.main}>
-                <main>
+                <div className={styles.container}>
                     <Outlet/>
-                </main>
+                </div>
             </div>
         </div>
     );

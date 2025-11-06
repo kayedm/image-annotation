@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import usePanZoom from "../hooks/usePanZoom";
+import usePanZoom from "../../../hooks/usePanZoom";
 import styles from "./styles/ImagePreview.module.css";
 
 export default function ImagePreview({ hidePoints, selectedTool, points, setPoints }) {
@@ -82,7 +82,7 @@ export default function ImagePreview({ hidePoints, selectedTool, points, setPoin
                                 width: "100%",
                                 height: "auto",
                                 userSelect: "none",
-                                pointerEvents: "none", // so clicks register for points
+                                pointerEvents: "none",
                             }}
                         />
                         {points.map((p) => (
