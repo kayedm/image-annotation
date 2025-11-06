@@ -1,7 +1,7 @@
 .info {
     display: flex;
     flex-direction: row;
-    margin: 8px;
+    margin: 8px 8px 0px 8px;
 }
 
 .icon {
@@ -17,7 +17,7 @@
 .deleteBtn {
     border: none;
     background: none;
-    color: firebrick;
+    color: var( --button-red-bg);
     margin-left: auto;
 }
 
