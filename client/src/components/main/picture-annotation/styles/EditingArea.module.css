@@ -2,21 +2,15 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    width: 100%;
 }
 
 .toolMenu {
-    height: 45px;
+    margin-bottom: 16px;
 }
 
 .imagePreview {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex: 1;
     overflow: hidden;
-}
-
-.imagePreview img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
 }
