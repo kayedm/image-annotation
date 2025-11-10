@@ -1,4 +1,4 @@
-import styles from './styles/Card.module.css';
+import styles from './Card.module.css';
 import {NavLink} from "react-router-dom";
 
 export default function Card({to, title, color}) {
