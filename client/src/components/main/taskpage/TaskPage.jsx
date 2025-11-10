@@ -1,5 +1,5 @@
 import Card from "./Card.jsx";
-import styles from "./styles/TaskPage.module.css"
+import styles from "./TaskPage.module.css"
 
 
 export default function TaskPage () {
