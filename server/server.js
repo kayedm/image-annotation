@@ -23,25 +23,29 @@ const demoUser = {
 app.post("/login", (req, res) => {
     const {username, password} = req.body;
 
-    if (username === demoUser.username && password === demoUser.password) {
-        const token = jwt.sign(
-            {
-                email: demoUser.email,
-                username: demoUser.username},
-            SECRET,
-            {expiresIn: "1d"}
-        );
+    try {
+        if (username !== demoUser.username && password !== demoUser.password) {
+            return res.status(401).json({ message: "Invalid username or password" });
+        }
+            const token = jwt.sign(
+                {
+                    email: demoUser.email,
+                    username: demoUser.username},
+                SECRET,
+                {expiresIn: "1d"}
+            );
 
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: false,
-            sameSite: "lax",
-            maxAge: 1000 * 60 * 60 * 24,
-        });
+            res.cookie("token", token, {
+                httpOnly: true,
+                secure: false,
+                sameSite: "lax",
+                maxAge: 1000 * 60 * 60 * 24,
+            });
 
-        res.json({message: "Login successful"});
-    } else {
-        res.status(401).json({message: "Invalid credentials"});
+            res.json({message: "Login successful"});
+
+    } catch (error) {
+        return res.status(500).json({message: "Error"});
     }
 });
 
@@ -57,14 +61,19 @@ app.post("/logout", (req, res) => {
 
 function auth(req, res, next) {
     const token = req.cookies.token;
-    if(!token) return res.status(401).json({message: "Not authorized"});
+
+    if (!token) {
+        return res.status(401).json({ message: "Not authorized" });
+    }
+
     jwt.verify(token, SECRET, (err, decoded) => {
         if (err) {
-            res.status(401).json({message: "Invalid token"});
+            return res.status(401).json({ message: "Invalid token" });
         }
-        req.user = decoded; //contains user information
+
+        req.user = decoded;
         next();
-    })
+    });
 }
 
 app.get('/me', auth, (req, res) => {
