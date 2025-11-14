@@ -2,6 +2,7 @@ import {useRef, useState} from "react";
 
 export default function usePanZoom() {
     const [offset, setOffset] = useState({x: 0, y: 0});
+    const [scale, setScale] = useState(null);
     const startPos = useRef({x: 0, y: 0});
     const wasDragging = useRef(false);
 
@@ -19,16 +20,26 @@ export default function usePanZoom() {
             x: e.clientX - startPos.current.x,
             y: e.clientY - startPos.current.y
         });
+        console.log(offset);
     };
 
     const handleMouseUp = () => {
         wasDragging.current = false;
     };
 
+    const handleMouseWheel = (e) => {
+        const s = 0.1;
+
+        e.deltaY < 0 ? setScale(prev => prev + s) : setScale(prev => Math.max(0, prev - s));
+
+        console.log(scale);
+    }
+
     const handlers = {
         onMouseDown: handleMouseDown,
         onMouseUp: handleMouseUp,
         onMouseMove: handleMouseMove,
+        onWheel: handleMouseWheel,
     };
 
     return {
@@ -36,6 +47,7 @@ export default function usePanZoom() {
         setOffset,
         wasDragging,
         handlers,
+        scale,
     }
 }
 
