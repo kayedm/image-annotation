@@ -18,7 +18,7 @@ export default function SidebarHeader({logo, onClose, setOnClose, to}) {
         <div className={styles.header}>
             <button className={styles.logo} onClick={handleClick}>{logo}</button>
             <button className={styles.button} onClick={() => setOnClose(!onClose)}>
-                <span className={styles.icon}><PanelLeft size={15} /></span>
+                <span className={styles.icon}><PanelLeft size={20} /></span>
             </button>
         </div>
     )

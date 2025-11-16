@@ -1,5 +1,5 @@
-import styles from './styles/ToolMenu.module.css'
-import { tools } from '../data/tools.jsx'
+import styles from '../styles/ToolMenu.module.css'
+import { tools } from '../Data/tools.jsx'
 
 export default function ToolMenu({setHidePoints, setSelectedTool, selectedTool}) {
 
