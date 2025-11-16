@@ -1,4 +1,4 @@
-import styles from "./styles/AnnotationCardUrlUpload.module.css";
+import styles from "../styles/AnnotationCardUrlUpload.module.css";
 import React from "react";
 
 export default function AnnotationCardUrlUpload({setUrlInput, urlInput, setImagePreview}) {

@@ -1,5 +1,5 @@
-import AnnotateCard from './AnnotationCard';
-import styles from './styles/AnnotationPanel.module.css'
+import AnnotateCard from './Card.jsx';
+import styles from '../styles/AnnotationPanel.module.css'
 
 export default function AnnotationCanvas({pointState}) {
     const { points, setPoints } = pointState;
