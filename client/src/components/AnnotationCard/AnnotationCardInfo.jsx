@@ -1,5 +1,5 @@
-import styles from "./styles/AnnotationCardInfo.module.css";
-import { toolLookup } from '../data/tools.jsx'
+import styles from "../styles/AnnotationCardInfo.module.css";
+import { toolLookup } from '../Data/tools.jsx'
 import {Trash2} from "lucide-react";
 
 export default function AnnotationCardInfo({point, setPoints}) {

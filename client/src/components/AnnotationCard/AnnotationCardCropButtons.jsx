@@ -1,4 +1,4 @@
-import styles from "./styles/AnnotationCardCropButtons.module.css";
+import styles from "../styles/AnnotationCardCropButtons.module.css";
 
 export default function AnnotationCardCropButtons({ selectedImage, setImagePreview, setShowCrop, cropPoints }) {
 
