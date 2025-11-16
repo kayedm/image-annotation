@@ -1,7 +1,7 @@
 import styles from './styles/SidebarFooter.module.css'
 import avatar from '../../assets/avatar.gif'
 import React from "react";
-import {useAuth} from "../context/AuthContext.jsx"
+import {useAuth} from "../../context/AuthContext.jsx"
 import {Settings2} from "lucide-react";
 import SidebarSettings from "./SidebarSettings.jsx"
 

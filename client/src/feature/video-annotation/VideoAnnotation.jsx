@@ -1,9 +1,9 @@
-import styles from "./styles/PictureAnnotation.module.css";
+import styles from "../../components/styles/PictureAnnotation.module.css";
 import React from "react";
-import AnnotationPanel from "./AnnotationPanel.jsx";
-import EditingArea from "./EditingArea.jsx";
+import AnnotationPanel from "../../components/AnnotationCard/AnnotationPanel.jsx";
+import EditingArea from "../../components/EditingArea/EditingArea.jsx";
 
-export default function PictureAnnotation() {
+export default function VideoAnnotation() {
     const [selectedTool, setSelectedTool] = React.useState(null);
     const [hidePoints, setHidePoints] = React.useState(false);
     const [points, setPoints] = React.useState([]);
