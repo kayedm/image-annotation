@@ -1,21 +1,22 @@
 .container {
-    transition: opacity 0.2s ease, max-width 0.2s ease;
+    padding: 8px;
+}
+
+.container:hover {
+    background-color: var(--bg-hover);
+    border-radius: 8px;
 }
 
 .footer {
     display: flex;
-    margin: 8px;
-    height: 50px;
-    background-color: var(--color-grey-bg);
-    border: 1px solid var(--color-grey-border);
+    height: 40px;
     border-radius: var(--border-radius);
     transition: opacity 0.1s ease, max-width 0.2s ease;
     align-items: center;
 }
 
 .avatar {
-    height: 75%;
-    margin: 8px;
+    height: 80%;
     border-radius: 50%;
     border: 1px solid var(--color-grey-border);
 }
@@ -23,10 +24,12 @@
 .text {
     display: flex;
     flex-direction: column;
+    margin-left: 8px;
 }
 
-:global([data-collapsed="true"]) .container {
-    opacity: 0;
+.email {
+    color: var(--text-muted);
+    font-size: var(--font-size-medium);
 }
 
 .username {
@@ -38,58 +41,15 @@
     color: var(--text-muted);
 }
 
-.menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    margin: 8px;
-    border: 1px solid var(--color-grey-border);
-    border-radius: var(--border-radius-medium);
+
+:global([data-collapsed="true"]) .text {
+    opacity: 0;
 }
 
-.email {
-    color: var(--text-muted);
-    font-size: var(--font-size-medium);
+:global([data-collapsed="true"]) .username {
+    opacity: 0;
 }
 
-.linebreak {
-    border: none;
-    border-top: 1px solid var(--color-grey-border);
-    margin: 2px;
+:global([data-collapsed="true"]) .avatar {
+    opacity: 100;
 }
-
-.menu {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    padding: 4px 8px;
-}
-
-.menu span {
-    padding: 2px 4px;
-}
-
-.menu button {
-    text-align: start;
-    align-items: center;
-    color: var(--text-muted);
-    font-size: var(--font-size-medium);
-    width: 100%;
-    padding: 8px 10px;
-    border: none;
-    outline: none;
-    background: none;
-}
-
-.menu button:hover {
-    border-radius: var(--border-radius);
-    background: var(--bg-hover);
-    border: none;
-    outline: none;
-}
-
-.menuItems button {
-    display: flex;
-    flex-direction: row;
-    color: var(--text-primary);
-}
-
