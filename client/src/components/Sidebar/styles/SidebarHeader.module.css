@@ -1,7 +1,7 @@
 .header {
-    margin: 11px;
     display: flex;
     justify-content: space-between;
+    padding: 8px;
 }
 
 .logo {
@@ -11,8 +11,6 @@
     text-decoration: none;
     border-radius: var(--border-radius);
     display: flex;
-    align-items: center;
-    justify-content: center;
     line-height: 0;
 }
 
@@ -22,8 +20,6 @@
 
 .icon {
     display: flex;
-    align-items: center;
-    justify-content: center;
     line-height: 0;
 }
 
@@ -32,8 +28,6 @@
     border: none;
     cursor: pointer;
     text-decoration: none;
-    justify-content: center;
-    align-items: center;
     border-radius: var(--border-radius);
 }
 
@@ -42,7 +36,7 @@
 }
 
 :global([data-collapsed="true"]) .button {
-    opacity: 0;
+    display: none;
     pointer-events: none;
     user-select: none;
 }
