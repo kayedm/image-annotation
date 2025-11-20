@@ -1,7 +1,7 @@
-import styles from "../styles/AnnotationCardUrlUpload.module.css";
+import styles from "./styles/CardUrlUpload.module.css";
 import React from "react";
 
-export default function AnnotationCardUrlUpload({setUrlInput, urlInput, setImagePreview}) {
+export default function CardUrlUpload({setUrlInput, urlInput, setImagePreview}) {
 
     function handleImageUrl() {
         const trimmed = urlInput.trim();

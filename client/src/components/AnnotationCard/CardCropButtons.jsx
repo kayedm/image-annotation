@@ -1,6 +1,6 @@
-import styles from "../styles/AnnotationCardCropButtons.module.css";
+import styles from "./styles/CardCropButtons.module.css";
 
-export default function AnnotationCardCropButtons({ selectedImage, setImagePreview, setShowCrop, cropPoints }) {
+export default function CardCropButtons({ selectedImage, setImagePreview, setShowCrop, cropPoints }) {
 
     const handleSaveCrop = () => {
         if (cropPoints.length !== 2) return;
