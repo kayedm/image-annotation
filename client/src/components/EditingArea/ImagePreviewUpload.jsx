@@ -1,7 +1,7 @@
-import styles from "./styles/ImagePreview.module.css";
+import styles from "./ImagePreview.module.css";
 import React from "react";
 
-export default function EditingAreaImagePreviewUpload({ setPreview }) {
+export default function ImagePreviewUpload({ setPreview }) {
 
     const handleFileChange = (e) => {
         const file = e.target.files?.[0];

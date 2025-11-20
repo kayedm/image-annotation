@@ -1,6 +1,6 @@
-import styles from "./styles/ImagePreview.module.css";
+import styles from "./ImagePreview.module.css";
 
-export default function EditingAreaImagePreviewPoints({ points, hidePoints  }) {
+export default function ImagePreviewPoints({ points, hidePoints  }) {
 
     return (
         <div>

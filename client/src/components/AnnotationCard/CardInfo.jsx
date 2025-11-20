@@ -1,8 +1,8 @@
-import styles from "../styles/AnnotationCardInfo.module.css";
+import styles from "./styles/CardInfo.module.css";
 import { toolLookup } from '../Data/tools.jsx'
 import {Trash2} from "lucide-react";
 
-export default function AnnotationCardInfo({point, setPoints}) {
+export default function CardInfo({point, setPoints}) {
 
     function handleTitleChange(e) {
         const title = e.target.value;

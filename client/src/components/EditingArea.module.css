@@ -9,7 +9,7 @@
     margin-bottom: 16px;
 }
 
-.imagePreview {
+.editingAreaPreview {
     display: flex;
     flex: 1;
     overflow: hidden;

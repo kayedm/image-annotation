@@ -1,10 +1,10 @@
-import styles from "../styles/AnnotationCardPhotos.module.css";
+import styles from "./styles/CardPhotos.module.css";
 import React, {useState} from "react";
-import AnnotationCardUrlUpload from "./AnnotationCardUrlUpload.jsx";
-import AnnotationCardThumbnails from "./AnnotationCardThumbnails.jsx";
+import CardUrlUpload from "./CardUrlUpload.jsx";
+import CardThumbnails from "./CardThumbnails.jsx";
 import {ArrowDown} from "lucide-react";
 
-export default function AnnotationCardPhotos() {
+export default function CardPhotos() {
     const [imagePreview, setImagePreview] = useState([]);
     const [collapsed, setCollapsed] = useState(false);
     const [urlInput, setUrlInput] = useState("");
@@ -16,8 +16,8 @@ export default function AnnotationCardPhotos() {
                 <span className={styles.icon} onClick={() => setCollapsed(!collapsed)}><ArrowDown size={12}/></span>
             </div>
             <div className={`${styles.contentWrapper} ${collapsed ? styles.hidden : ""}`}>
-                <AnnotationCardThumbnails setImagePreview={setImagePreview} imagePreview={imagePreview} />
-                <AnnotationCardUrlUpload setUrlInput={setUrlInput} urlInput={urlInput} setImagePreview={setImagePreview} />
+                <CardThumbnails setImagePreview={setImagePreview} imagePreview={imagePreview} />
+                <CardUrlUpload setUrlInput={setUrlInput} urlInput={urlInput} setImagePreview={setImagePreview} />
             </div>
         </div>
     )

@@ -1,9 +1,14 @@
 .container {
     display: flex;
+    flex-direction: row;
+    align-content: center;
     gap: 8px;
 }
 
 .container button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     background: none;
     border: 1px solid var(--border-color);
     border-radius: 4px;
@@ -23,4 +28,8 @@
 
 .hideBtn {
     margin-left: auto;
+}
+
+.icon {
+    align-content: center;
 }

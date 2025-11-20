@@ -1,23 +1,21 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
     border: 1px dashed var(--color-grey-border);
     border-radius: 8px;
     background-color: #fafafa;
     box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
 
 .uploadBox {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     font-size: var(--font-size-medium);
-    transition: color 0.15s ease, border-color 0.15s ease;
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
 
 .uploadBox:hover {
@@ -34,24 +32,21 @@
     position: relative;
     border-radius: 8px;
     overscroll-behavior: contain;
-    background-color: #fff;
+    flex: 1;
+    width: 100%;
+    height: 100%;
 }
 
 .imageWrapper {
-    position: relative;
-    display: inline-block;
-    transform-origin: top left;
-    touch-action: none;
+    display: flex;
 }
 
 .image {
-    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
     height: auto;
     object-fit: contain;
-    border-radius: 2px;
-    user-select: none;
-    pointer-events: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .point {
