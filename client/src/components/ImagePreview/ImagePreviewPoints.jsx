@@ -1,4 +1,4 @@
-import styles from "./ImagePreview.module.css";
+import styles from "./ImagePreviewPoints.module.css";
 
 export default function ImagePreviewPoints({ points, hidePoints  }) {
 
