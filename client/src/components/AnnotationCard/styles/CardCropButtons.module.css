@@ -29,7 +29,6 @@
 
 .deleteBtn:hover {
     background-color: var(--bg-hover);
-    color: black;
 }
 
 .buttons {
