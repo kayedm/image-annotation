@@ -9,6 +9,6 @@ export const tools = [
     { label: "Landmark", icon: Landmark },
 ];
 
-export function toolLookup(point) {
-    return tools.find(t => t.label === point.label);
+export function toolLookup(annotation) {
+    return tools.find(t => t.label === annotation.label);
 }
