@@ -12,45 +12,61 @@
 
     --color-green-bg: #E9FBF0;
     --color-green-border: #A7E6B9;
+    --color-green-mid: #8CCFA3;
 
     --color-blue-bg: #EAF5FB;
     --color-blue-border: #A3CBE3;
+    --color-blue-mid: #7BB0D1;
 
     --color-beige-bg: #FFFBEF;
     --color-beige-border: #E8E1C2;
+    --color-beige-mid: #D9C99A;
 
     --color-red-bg: #FDECEC;
     --color-red-border: #E3A3A3;
+    --color-red-mid: #CB7474;
 
     --color-purple-bg: #F4EAFB;
     --color-purple-border: #C5A3E3;
+    --color-purple-mid: #A884D0;
 
     --color-grey-bg: #F5F5F5;
     --color-grey-border: #D1D1D1;
+    --color-grey-mid: #A8A8A8;
 
     --color-pink-bg: #FCE4EC;
     --color-pink-border: #E8A8C3;
+    --color-pink-mid: #C16A8E;
 
     --color-teal-bg: #E0FAF8;
     --color-teal-border: #9CDAD6;
+    --color-teal-mid: #6BBEB9;
 
     --color-yellow-bg: #FFFBE5;
     --color-yellow-border: #E8DD9C;
+    --color-yellow-mid: #C8B85D;
 
     --color-orange-bg: #FFF2E5;
     --color-orange-border: #F5C29C;
+    --color-orange-mid: #D38F62;
 
     --color-brown-bg: #F8F3EF;
     --color-brown-border: #D5BFAE;
+    --color-brown-mid: #A88D70;
 
     --color-charcoal-bg: #F2F3F4;
     --color-charcoal-border: #B3B8BC;
+    --color-charcoal-mid: #80868A;
 
     --color-cyan-bg: #E6FBFB;
     --color-cyan-border: #A1E4E4;
+    --color-cyan-mid: #5CB9B9;
 
     --color-lavender-bg: #F6F2FF;
     --color-lavender-border: #C8B7F0;
+    --color-lavender-mid: #937DD8;
+
+
 }
 
 

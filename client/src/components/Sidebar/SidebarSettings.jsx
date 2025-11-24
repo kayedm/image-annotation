@@ -6,7 +6,7 @@ export default function SidebarSettings({ onClose }) {
     const { logout } = useAuth()
 
     return (
-        <div className={styles.settings}   onClick={onClose}>
+        <div className={styles.settings} onClick={onClose}>
             <div className={styles.menu} onClick={ (e) => e.stopPropagation() }>
                 <button onClick={logout}>
                     Logout

@@ -1,7 +1,13 @@
-import styles from '../styles/ToolMenu.module.css'
+import styles from './ToolMenu.module.css'
 import { tools } from '../Data/tools.jsx'
+import {imageStore} from "../../store/imageStore.js";
 
-export default function ToolMenu({setHidePoints, setSelectedTool, selectedTool}) {
+export default function ToolMenu() {
+
+    const selectedTool = imageStore((state) => state.selectedTool);
+    const setSelectedTool = imageStore((state) => state.setSelectedTool);
+    const toggleHidePoints = imageStore((state) => state.toggleHidePoints);
+    const hidePoints = imageStore((state) => state.hidePoints);
 
     /* eslint-disable no-unused-vars */
     return (
@@ -10,12 +16,12 @@ export default function ToolMenu({setHidePoints, setSelectedTool, selectedTool})
             {tools.map(({label, icon: Icon }) => (
                 <button
                     key={label}
-                    onClick={() => setSelectedTool(prev => prev === label ? null : label)}
+                    onClick={() => setSelectedTool(label)}
                     className={selectedTool === label ? styles.active : ""}>
-                    <Icon size={14}/>{label}
+                    <Icon className={styles.icon} size={14}/>{label}
                 </button>
             ))}
-            <button className={styles.hideBtn} onClick={ () => setHidePoints((prev) => !prev)}> Hide Points</button>
+            <button className={styles.hideBtn} onClick={toggleHidePoints} className={hidePoints ? styles.active : ""}> Hide Points</button>
         </div>
     );
 }

@@ -1,28 +1,35 @@
 .layout {
     display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
     height: 100%;
+    gap: 16px;
+    padding: 16px;
+
+}
+
+.sidebarShell {
+    width: 250px;
+    display: flex;
+    height: 100%;
+    transition: width .15s ease;
 }
 
 .main {
     flex: 1;
     display: flex;
-    min-width: 0;
+    transition: width .15s ease;
 }
 
 .container {
     display: flex;
     flex: 1;
-    padding: 34px;
-    min-width: 0;
 }
 
-.footer {
-    transition: opacity 0.2s ease;
-    opacity: 1;
-    margin-top: auto;
+.sidebarShell[data-collapsed="true"] {
+    width: 50px;
 }
 
-:global([data-collapsed="true"]) .footer {
-    opacity: 0;
-    pointer-events: none;
+.main[data-collapsed="true"] {
+    margin-left: 55px;
 }

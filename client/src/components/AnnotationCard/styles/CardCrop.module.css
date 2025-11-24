@@ -10,8 +10,9 @@
 }
 
 .wrapper {
+    width: 50%;
+    height: 75%;
     display: flex;
-    width: min(90vw, 500px);
     flex-direction: column;
     background-color: white;
     border-radius: 10px;

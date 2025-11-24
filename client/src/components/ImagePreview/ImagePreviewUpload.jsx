@@ -1,13 +1,16 @@
 import styles from "./ImagePreview.module.css";
 import React from "react";
+import {imageStore} from "../../store/imageStore.js";
 
-export default function ImagePreviewUpload({ setPreview }) {
+export default function ImagePreviewUpload() {
+
+    const setImage = imageStore((state) => state.setImage);
 
     const handleFileChange = (e) => {
         const file = e.target.files?.[0];
         if (!file) return;
         const url = URL.createObjectURL(file);
-        setPreview(url);
+        setImage(url);
     };
 
     return (

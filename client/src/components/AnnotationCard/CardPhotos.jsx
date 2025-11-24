@@ -4,10 +4,8 @@ import CardUrlUpload from "./CardUrlUpload.jsx";
 import CardThumbnails from "./CardThumbnails.jsx";
 import {ArrowDown} from "lucide-react";
 
-export default function CardPhotos() {
-    const [imagePreview, setImagePreview] = useState([]);
+export default function CardPhotos({annotation}) {
     const [collapsed, setCollapsed] = useState(false);
-    const [urlInput, setUrlInput] = useState("");
 
     return (
         <div className={styles.container}>
@@ -16,8 +14,8 @@ export default function CardPhotos() {
                 <span className={styles.icon} onClick={() => setCollapsed(!collapsed)}><ArrowDown size={12}/></span>
             </div>
             <div className={`${styles.contentWrapper} ${collapsed ? styles.hidden : ""}`}>
-                <CardThumbnails setImagePreview={setImagePreview} imagePreview={imagePreview} />
-                <CardUrlUpload setUrlInput={setUrlInput} urlInput={urlInput} setImagePreview={setImagePreview} />
+                <CardThumbnails annotation={annotation}/>
+                <CardUrlUpload annotation={annotation}/>
             </div>
         </div>
     )

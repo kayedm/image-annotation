@@ -2,8 +2,4 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 10px;
-    margin: 10px;
-    min-height: 100vh;
-    min-width: 100vw;
 }

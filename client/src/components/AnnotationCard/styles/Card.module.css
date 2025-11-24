@@ -5,6 +5,7 @@
     border: 1px solid var(--color-grey-border);
     border-radius: var(--border-radius);
     font-size: var(--font-size-small);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 
 .container[data-label="Person"] {
@@ -28,8 +29,8 @@
 }
 
 .container[data-label="Location"] {
-    background-color: var(--color-yellow-bg);
-    border-color: var(--color-yellow-border);
+    background-color: var(--color-orange-bg);
+    border-color: var(--color-orange-border);
 }
 
 .container[data-label="Landmark"] {

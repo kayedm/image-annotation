@@ -1,12 +1,25 @@
 .info {
     display: flex;
     flex-direction: row;
+    align-items: center;
     margin: 8px 8px 0 8px;
+    gap: 2px;
 }
 
 .icon {
+    display: flex;
+    color: white;
+    justify-content: center;
     align-items: center;
+    width: 30px;
+    height:30px;
     margin-right: 2px;
+    border-radius: 100px;
+    border: 1px solid white;
+}
+
+.title {
+
 }
 
 .text {
@@ -16,19 +29,45 @@
 
 .deleteBtn {
     border: none;
+    border-radius: 15px;
     background: none;
+    cursor: pointer;
     color: var( --button-red-bg);
     margin-left: auto;
 }
 
-.text input {
-    position: relative;
+.title {
     pointer-events: auto;
     background: none;
     border: none;
     outline: none;
+    padding: 0;
 }
 
-.text input:focus {
+.title:focus {
     outline: none;
+}
+
+.icon[data-label="Person"] {
+    background-color: var(--color-green-mid);
+}
+
+.icon[data-label="Clothing"] {
+    background-color: var(--color-red-mid);
+}
+
+.icon[data-label="Object"] {
+    background-color: var(--color-blue-mid);
+}
+
+.icon[data-label="Animal"] {
+    background-color: var(--color-purple-mid);
+}
+
+.icon[data-label="Location"] {
+    background-color: var(--color-orange-mid);
+}
+
+.icon[data-label="Landmark"] {
+    background-color: var(--color-teal-mid);
 }

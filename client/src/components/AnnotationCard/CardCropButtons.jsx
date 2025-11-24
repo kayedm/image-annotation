@@ -1,36 +1,64 @@
 import styles from "./styles/CardCropButtons.module.css";
+import {imageStore} from "../../store/imageStore.js";
 
-export default function CardCropButtons({ selectedImage, setImagePreview, setShowCrop, cropPoints }) {
+export default function CardCropButtons({ annotation, selectedImage, setShowCrop, cropPoints, imgRef }) {
+
+    const updateAnnotationRefImage = imageStore(state => state.updateAnnotationRefImage);
 
     const handleSaveCrop = () => {
-        if (cropPoints.length !== 2) return;
-        console.log(cropPoints.length);
+
+        if (cropPoints.length < 2) return;
+
         const [p1, p2] = cropPoints;
         const crop = {
-            x: Math.min(p1.imgX, p2.imgX),
-            y: Math.min(p1.imgY, p2.imgY),
-            w: Math.abs(p1.imgX - p2.imgX),
-            h: Math.abs(p1.imgY - p2.imgY)
+            x: Math.min(p1.x, p2.x),
+            y: Math.min(p1.y, p2.y),
+            w: Math.abs(p1.x - p2.x),
+            h: Math.abs(p1.y - p2.y)
         };
 
         const img = new Image();
-        img.src = selectedImage;
         img.crossOrigin = "anonymous";
+
+        const refImgObj = annotation.referenceImages.find(img => img.id === selectedImage);
+        if (!refImgObj) return;
+        img.src = refImgObj.src;
+
         img.onload = () => {
+            const rect = imgRef.current.getBoundingClientRect();
+
+            const scaleX = img.naturalWidth / rect.width;
+            const scaleY = img.naturalHeight / rect.height;
+
             const canvas = document.createElement("canvas");
+            canvas.width = crop.w * scaleX;
+            canvas.height = crop.h * scaleY;
+
             const ctx = canvas.getContext("2d");
-            canvas.width = crop.w;
-            canvas.height = crop.h;
-            ctx.drawImage(img, crop.x, crop.y, crop.w, crop.h, 0, 0, crop.w, crop.h);
-            const out = canvas.toDataURL("image/png");
-            setImagePreview(prev => prev.map(i => (i === selectedImage ? out : i)));
-            setShowCrop(false);
-            setShowCrop(null);
+
+            ctx.drawImage(
+                img,
+                crop.x * scaleX,
+                crop.y * scaleY,
+                crop.w * scaleX,
+                crop.h * scaleY,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+            canvas.toBlob((blob) => {
+                if (!blob) return;
+                const img = URL.createObjectURL(blob);
+                updateAnnotationRefImage(annotation.id, selectedImage, img);
+                setShowCrop(false);
+            }, "image/png");
         };
     };
 
+
     const handleDeleteImage = () => {
-        setImagePreview((prev) => prev.filter((i) => i !== selectedImage));
         setShowCrop(false);
     };
 

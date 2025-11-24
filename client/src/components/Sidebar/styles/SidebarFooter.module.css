@@ -1,5 +1,6 @@
 .container {
-    padding: 8px;
+    margin: 6px;
+    padding: 2px;
 }
 
 .container:hover {
