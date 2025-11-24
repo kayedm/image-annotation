@@ -7,14 +7,18 @@ export function AuthProvider({ children}) {
     const [loading, setLoading] = React.useState(true);
 
     useEffect(() => {
-        fetch("http://localhost:5000/me", {
-            credentials: "include",
-        })
-            .then(res => (res.ok ? res.json() : null))
-            .then(data => {
-                if(data?.user) setUser(data?.user);
+        try {
+            fetch("http://localhost:5000/me", {
+                credentials: "include",
             })
-            .finally(() => setLoading(false));
+                .then(res => (res.ok ? res.json() : null))
+                .then(data => {
+                    if(data?.user) setUser(data?.user);
+                })
+                .finally(() => setLoading(false));
+        } catch (error) {
+            console.error(error);
+        }
     }, [])
 
     async function login(username, password) {
