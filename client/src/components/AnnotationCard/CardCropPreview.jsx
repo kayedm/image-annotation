@@ -66,7 +66,7 @@ export default function CardCropPreview({referenceImages, selectedImage, cropPoi
                     onMouseUp={handleMouseUp}
                     onMouseMove={handleMouseMove}
                 >
-                    <img src={previewImage?.src} className={styles.image} draggable={false} ref={imgRef} />
+                    <img src={previewImage?.src} alt={"Preview Image"} className={styles.image} draggable={false} ref={imgRef} />
                     {rect && (
                         <div
                             className={styles.cropBox}
