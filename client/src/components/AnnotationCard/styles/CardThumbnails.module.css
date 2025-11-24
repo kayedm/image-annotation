@@ -3,60 +3,10 @@
     flex-direction: row;
     overflow-x: auto;
     max-width: 500px;
-}
-
-.uploadImg {
-    margin: 8px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    height: 80px;
-    width: 80px;
-    cursor: pointer;
-    font-size: var(--font-size-medium);
-    border: 1px solid var(--color-grey-border);
-    border-radius: var(--border-radius);
-    flex-shrink: 0;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.2) transparent;
 }
 
 .photos input {
     display: none;
-}
-
-.uploadImg:hover {
-    background-color: var(--bg-hover);
-}
-
-.image {
-    margin: 8px;
-    height: 80px;
-    width: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-    flex-shrink: 0;
-    border: 1px solid var(--color-grey-border);
-}
-
-.crop {
-    position: fixed;
-
-}
-
-.photos::-webkit-scrollbar {
-    height: 6px;
-}
-
-.photos::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-}
-
-.photos::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.photos {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0,0,0,0.2) transparent;
 }
