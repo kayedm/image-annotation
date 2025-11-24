@@ -1,4 +1,4 @@
-import styles from "../../components/styles/PictureAnnotation.module.css";
+import styles from "../picture-annotation/PictureAnnotation.module.css";
 import React from "react";
 import AnnotationPanel from "../../components/AnnotationCard/AnnotationPanel.jsx";
 import EditingArea from "../../components/EditingArea/EditingArea.jsx";
