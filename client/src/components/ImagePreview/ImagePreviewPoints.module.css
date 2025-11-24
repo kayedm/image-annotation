@@ -1,0 +1,47 @@
+.point {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid white;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 10;
+    transition: opacity 0.2s ease;
+}
+
+.hidePoints {
+    opacity: 0;
+}
+
+
+.point[data-label="Person"] {
+    background-color: var(--color-green-bg);
+    border-color: var(--color-green-border);
+}
+
+.point[data-label="Clothing"] {
+    background-color: var(--color-red-bg);
+    border-color: var(--color-red-border);
+}
+
+.point[data-label="Object"] {
+    background-color: var(--color-blue-bg);
+    border-color: var(--color-blue-border);
+}
+
+.point[data-label="Animal"] {
+    background-color: var(--color-purple-bg);
+    border-color: var(--color-purple-border);
+}
+
+.point[data-label="Location"] {
+    background-color: var(--color-yellow-bg);
+    border-color: var(--color-yellow-border);
+}
+
+.point[data-label="Landmark"] {
+    background-color: var(--color-teal-bg);
+    border-color: var(--color-teal-border);
+}
