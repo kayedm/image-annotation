@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React from "react";
 import usePanZoom from "../../hooks/usePanZoom.js";
 import styles from "./ImagePreview.module.css";
 import ImagePreviewUpload from "./ImagePreviewUpload.jsx";
@@ -48,7 +48,7 @@ export default function ImagePreview() {
                  style={{
                      transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`, transformOrigin: "top left",
                  }}>
-                <img src={image} className={styles.image} draggable={false}/>
+                <img src={image} alt={"Image Preview"} className={styles.image} draggable={false}/>
                 <ImagePreviewPoints/>
             </div>
         </div>)}
