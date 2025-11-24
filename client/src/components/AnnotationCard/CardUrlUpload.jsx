@@ -1,12 +1,15 @@
 import styles from "./styles/CardUrlUpload.module.css";
-import React from "react";
+import React, {useState} from "react";
+import {imageStore} from "../../store/imageStore.js";
 
-export default function CardUrlUpload({setUrlInput, urlInput, setImagePreview}) {
+export default function CardUrlUpload({annotation}) {
+    const [urlInput, setUrlInput] = useState("");
+    const addAnnotationRefImage = imageStore(state => state.addAnnotationRefImage);
 
     function handleImageUrl() {
-        const trimmed = urlInput.trim();
-        if (!trimmed) return;
-        setImagePreview(prev => [...prev, trimmed])
+        const img = urlInput.trim();
+        if (!img) return;
+        addAnnotationRefImage(annotation.id, img);
         setUrlInput("");
     }
 
