@@ -44,6 +44,12 @@ export const imageStore = create((set, get) => ({
         } : ann)
     })),
 
+    deleteAnnotationRefImage: (id, imageId) => set(state => ({
+        annotations: state.annotations.map(ann => ann.id === id ? {
+            ...ann, referenceImages: ann.referenceImages.filter(img => img.id !== imageId)
+        } : ann)
+    })),
+
     setImage: (img) => set({image: img}),
     setSelectedTool: (tool) => set((state) => ({selectedTool: state.selectedTool === tool ? null : tool})),
     toggleHidePoints: () => set((state) => ({hidePoints: !state.hidePoints})),
