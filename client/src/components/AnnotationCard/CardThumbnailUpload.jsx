@@ -3,7 +3,7 @@ import {PlusIcon} from "lucide-react";
 import React from "react";
 import {imageStore} from "../../store/imageStore.js";
 
-export default function CardThumbnailUpload({ annotation }) {
+export default function CardThumbnailUpload({annotation}) {
 
     const addAnnotationRefImage = imageStore(state => state.addAnnotationRefImage);
 

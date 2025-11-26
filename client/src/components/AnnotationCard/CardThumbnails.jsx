@@ -12,11 +12,12 @@ export default function CardThumbnails({annotation}) {
         <div className={styles.photos}>
             {showCrop && (
                 <div className={styles.crop}>
-                    <CardCrop annotation={annotation} setShowCrop={setShowCrop} selectedImage={selectedImage} />
+                    <CardCrop annotation={annotation} setShowCrop={setShowCrop} selectedImage={selectedImage}/>
                 </div>
             )}
             <CardThumbnailUpload annotation={annotation}/>
-            <CardThumbnailImages referenceImages={annotation.referenceImages} setShowCrop={setShowCrop} setSelectedImage={setSelectedImage}/>
+            <CardThumbnailImages referenceImages={annotation.referenceImages} setShowCrop={setShowCrop}
+                                 setSelectedImage={setSelectedImage}/>
         </div>
     )
 }

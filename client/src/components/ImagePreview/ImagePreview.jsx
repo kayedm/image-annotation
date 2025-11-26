@@ -38,7 +38,6 @@ export default function ImagePreview() {
         addAnnotation(point);
     };
 
-
     return (<div className={styles.container}>
         {!image ? <ImagePreviewUpload/> : (<div
             className={styles.previewBox}

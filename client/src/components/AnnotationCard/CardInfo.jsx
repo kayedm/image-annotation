@@ -1,15 +1,15 @@
 import styles from "./styles/CardInfo.module.css";
-import { toolLookup } from '../Data/tools.jsx';
-import { Trash2 } from "lucide-react";
-import { imageStore } from "../../store/imageStore.js";
+import {toolLookup} from '../Data/tools.jsx';
+import {Trash2} from "lucide-react";
+import {imageStore} from "../../store/imageStore.js";
 
-export default function CardInfo({ annotation }) {
+export default function CardInfo({annotation}) {
 
     const updateAnnotationTitle = imageStore(state => state.updateAnnotationTitle);
     const deleteAnnotation = imageStore(state => state.deleteAnnotation);
 
     function handleTitleChange(e) {
-        updateAnnotationTitle(annotation.id, { title: e.target.value });
+        updateAnnotationTitle(annotation.id, {title: e.target.value});
     }
 
     const tool = toolLookup(annotation);
@@ -18,7 +18,7 @@ export default function CardInfo({ annotation }) {
     return (
         <div className={styles.info}>
             <span className={styles.icon} data-label={annotation.label}>
-                <Icon size={20} />
+                <Icon size={20}/>
             </span>
 
             <div className={styles.text}>
@@ -34,7 +34,7 @@ export default function CardInfo({ annotation }) {
                 className={styles.deleteBtn}
                 onClick={() => deleteAnnotation(annotation.id)}
             >
-                <Trash2 size={15} />
+                <Trash2 size={15}/>
             </button>
         </div>
     );
