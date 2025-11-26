@@ -10,8 +10,8 @@ export default function CardCrop({annotation, selectedImage, setShowCrop}) {
     return (
         <div className={styles.container} onClick={() => setShowCrop(false)}>
             <div className={styles.wrapper} onClick={e => e.stopPropagation()}>
-                <CardCropPreview selectedImage={selectedImage} setCropPoints={setCropPoints} cropPoints={cropPoints} imgRef={imgRef} referenceImages={annotation.referenceImages} />
-                <CardCropButtons annotation={annotation} selectedImage={selectedImage} setShowCrop={setShowCrop} cropPoints={cropPoints} imgRef={imgRef} />
+                <CardCropPreview selectedImage={selectedImage} setCropPoints={setCropPoints} cropPoints={cropPoints} imgRef={imgRef} referenceImages={annotation.referenceImages}/>
+                <CardCropButtons annotation={annotation} selectedImage={selectedImage} setShowCrop={setShowCrop} cropPoints={cropPoints} imgRef={imgRef}/>
             </div>
         </div>
     );

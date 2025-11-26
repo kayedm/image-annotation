@@ -5,7 +5,7 @@ import usePanZoom from "../../hooks/usePanZoom.js";
 export default function CardCropPreview({referenceImages, selectedImage, cropPoints, setCropPoints, imgRef}) {
     const {handlers, offset, scale, didDrag} = usePanZoom();
     const [isCropping, setIsCropping] = useState(false);
-    const previewImage = referenceImages.find( img => img.id === selectedImage);
+    const previewImage = referenceImages.find(img => img.id === selectedImage);
 
     function getLocalCoords(e) {
 
@@ -66,7 +66,8 @@ export default function CardCropPreview({referenceImages, selectedImage, cropPoi
                     onMouseUp={handleMouseUp}
                     onMouseMove={handleMouseMove}
                 >
-                    <img src={previewImage?.src} alt={"Preview Image"} className={styles.image} draggable={false} ref={imgRef} />
+                    <img src={previewImage?.src} alt={"Preview Image"} className={styles.image} draggable={false}
+                         ref={imgRef}/>
                     {rect && (
                         <div
                             className={styles.cropBox}

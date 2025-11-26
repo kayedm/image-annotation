@@ -6,8 +6,8 @@ export default function Card({annotation}) {
 
     return (
         <div className={styles.container} data-label={annotation.label}>
-            <CardInfo annotation={annotation} />
-            <CardPhotos annotation={annotation} />
+            <CardInfo annotation={annotation}/>
+            <CardPhotos annotation={annotation}/>
         </div>
     )
 }
