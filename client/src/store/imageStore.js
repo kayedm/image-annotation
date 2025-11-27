@@ -57,7 +57,8 @@ export const imageStore = create((set, get) => ({
     buildPayload: () => {
         const state = get();
         return {
-            image: state.image, referenceImages: state.referenceImages, points: state.points
+            image: state.image,
+            annotation: state.annotations
         };
     }
 }));
