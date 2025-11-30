@@ -10,14 +10,15 @@ export default function CardCropPreview({referenceImages, selectedImage, cropPoi
     function getLocalCoords(e) {
 
         const rect = e.currentTarget.getBoundingClientRect();
+        console.log(rect);
 
-        let x = e.clientX - rect.left;
-        let y = e.clientY - rect.top;
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-        x = (x - offset.x) / scale;
-        y = (y - offset.y) / scale;
+        const xPercent = x / rect.width;
+        const yPercent = y / rect.height;
 
-        return {x, y}
+        return {xPercent, yPercent}
     }
 
     function handleMouseUp(e) {
@@ -44,10 +45,10 @@ export default function CardCropPreview({referenceImages, selectedImage, cropPoi
     if (cropPoints.length === 2) {
         const [start, end] = cropPoints;
         rect = {
-            x: Math.min(start.x, end.x),
-            y: Math.min(start.y, end.y),
-            w: Math.abs(start.x - end.x),
-            h: Math.abs(start.y - end.y),
+            x: Math.min(start.xPercent, end.xPercent),
+            y: Math.min(start.yPercent, end.yPercent),
+            w: Math.abs(start.xPercent - end.xPercent),
+            h: Math.abs(start.yPercent - end.yPercent)
         };
     }
 
@@ -57,14 +58,13 @@ export default function CardCropPreview({referenceImages, selectedImage, cropPoi
                 className={styles.previewBox}
             >
                 <div
-
                     className={styles.imageWrapper}
                     style={{
                         transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
                         transformOrigin: "top left",
                     }}
-                    onMouseUp={handleMouseUp}
-                    onMouseMove={handleMouseMove}
+                    {...handlers}
+                    onClick={handleMouseUp}
                 >
                     <img src={previewImage?.src} alt={"Preview Image"} className={styles.image} draggable={false}
                          ref={imgRef}/>
@@ -72,10 +72,10 @@ export default function CardCropPreview({referenceImages, selectedImage, cropPoi
                         <div
                             className={styles.cropBox}
                             style={{
-                                left: rect.x,
-                                top: rect.y,
-                                width: rect.w,
-                                height: rect.h,
+                                left: `${rect.x * 100}%`,
+                                top: `${rect.y * 100}%`,
+                                width: `${rect.w * 100}%`,
+                                height: `${rect.h * 100}%`,
                                 userSelect: "none",
                                 pointerEvents: "none",
                             }}
@@ -84,5 +84,6 @@ export default function CardCropPreview({referenceImages, selectedImage, cropPoi
                 </div>
             </div>
         </div>
-    );
+    )
+        ;
 }
