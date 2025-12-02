@@ -1,4 +1,5 @@
 import {useRef, useState} from "react";
+import { getParentCoords } from "../utils/coords.js";
 
 export default function usePanZoom() {
     const [offset, setOffset] = useState({x: 0, y: 0});
@@ -42,35 +43,36 @@ export default function usePanZoom() {
 
     const handleMouseWheel = (e) => {
         e.preventDefault();
+
         const zoomStep = 0.1;
-        const rect = e.target.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-        const imgX = (mouseX - offset.x) / scale;
-        const imgY = (mouseY - offset.y) / scale;
-        const newScale = e.deltaY < 0 ? scale + zoomStep : Math.max(0.6, scale - zoomStep);
+
+        const coords = getParentCoords(e);
+
+        const imgX = (coords.x - offset.x) / scale;
+        const imgY = (coords.y - offset.y) / scale;
+
+        const newScale = e.deltaY < 0 ? scale + zoomStep : Math.max(0.5, scale - zoomStep);
+
         const newOffset = {
-            x: mouseX - imgX * newScale,
-            y: mouseY - imgY * newScale,
+            x: coords.x - imgX * newScale,
+            y: coords.y - imgY * newScale,
         }
+
         setScale(newScale);
         setOffset(newOffset);
-    };
 
-    const handlers = {
-        onMouseDown: handleMouseDown,
-        onMouseUp: handleMouseUp,
-        onMouseMove: handleMouseMove,
-        onWheel: handleMouseWheel,
     };
 
     return {
         offset,
-        setOffset,
-        isDown,
         didDrag,
-        handlers,
         scale,
+        handlers: {
+            onMouseDown: handleMouseDown,
+            onMouseMove: handleMouseMove,
+            onMouseUp: handleMouseUp,
+            onWheel: handleMouseWheel,
+        },
     }
 }
 
