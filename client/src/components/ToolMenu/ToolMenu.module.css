@@ -1,7 +1,14 @@
 .container {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-content: center;
+    gap: 8px;
+}
+
+.toolMenu {
+    display: flex;
+    flex-direction: row;
     gap: 8px;
 }
 
