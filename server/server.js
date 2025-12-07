@@ -18,6 +18,7 @@ const demoUser = {
     email: "test@5est.com",
     username: "test",
     password: "1234",
+    role: "admin",
 }
 
 app.post("/login", (req, res) => {
@@ -25,24 +26,26 @@ app.post("/login", (req, res) => {
 
     try {
         if (username !== demoUser.username && password !== demoUser.password) {
-            return res.status(401).json({ message: "Invalid username or password" });
+            return res.status(401).json({message: "Invalid username or password"});
         }
-            const token = jwt.sign(
-                {
-                    email: demoUser.email,
-                    username: demoUser.username},
-                SECRET,
-                {expiresIn: "1d"}
-            );
+        const token = jwt.sign(
+            {
+                email: demoUser.email,
+                username: demoUser.username,
+                userId: demoUser.id,
+            },
+            SECRET,
+            {expiresIn: "1d"}
+        );
 
-            res.cookie("token", token, {
-                httpOnly: true,
-                secure: false,
-                sameSite: "lax",
-                maxAge: 1000 * 60 * 60 * 24,
-            });
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "lax",
+            maxAge: 1000 * 60 * 60 * 24,
+        });
 
-            res.json({message: "Login successful"});
+        res.json({message: "Login successful"});
 
     } catch (error) {
         return res.status(500).json({message: "Error"});
@@ -63,21 +66,35 @@ function auth(req, res, next) {
     const token = req.cookies.token;
 
     if (!token) {
-        return res.status(401).json({ message: "Not authorized" });
+        return res.status(401).json({message: "Not authorized"});
     }
 
-    jwt.verify(token, SECRET, (err, decoded) => {
-        if (err) {
-            return res.status(401).json({ message: "Invalid token" });
-        }
+    try {
+        jwt.verify(token, SECRET, (err, decoded) => {
+            if (err) {
+                return res.status(401).json({message: "Invalid token"});
+            }
 
-        req.user = decoded;
-        next();
-    });
+            req.user = decoded;
+            next();
+        });
+    } catch(e) {
+        return res.status(401).json({message: "Unauthorized"});
+    }
 }
 
 app.get('/me', auth, (req, res) => {
-    res.json({ user: req.user });
+    res.json({user: req.user});
+})
+
+app.get('/annotation', auth, (req, res) => {
+    try {
+        const userId = req.user.userId;
+        
+        res.json({annotation});
+    } catch (error) {
+        console.error(error);
+    }
 })
 
 app.get('/', (req, res) => {
