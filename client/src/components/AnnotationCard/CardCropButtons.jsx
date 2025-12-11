@@ -1,9 +1,10 @@
 import styles from "./styles/CardCropButtons.module.css";
 import {imageStore} from "../../store/imageStore.js";
 
-export default function CardCropButtons({ annotation, selectedImage, setShowCrop, cropPoints, imgRef }) {
+export default function CardCropButtons({ annotation, selectedImage, setShowCrop, cropPoints }) {
 
     const updateAnnotationRefImage = imageStore(state => state.updateAnnotationRefImage);
+    const deleteAnnotationRefImage = imageStore(state => state.deleteAnnotationRefImage);
 
     const handleSaveCrop = () => {
 
@@ -11,42 +12,37 @@ export default function CardCropButtons({ annotation, selectedImage, setShowCrop
 
         const [p1, p2] = cropPoints;
         const crop = {
-            x: Math.min(p1.x, p2.x),
-            y: Math.min(p1.y, p2.y),
-            w: Math.abs(p1.x - p2.x),
-            h: Math.abs(p1.y - p2.y)
+            xPercent: Math.min(p1.x, p2.x),
+            yPercent: Math.min(p1.y, p2.y),
+            wPercent: Math.abs(p1.x - p2.x),
+            hPercent: Math.abs(p1.y - p2.y),
         };
+
+        const refImg = annotation.referenceImages.find(img => img.id === selectedImage);
+        if (!refImg) return;
 
         const img = new Image();
         img.crossOrigin = "anonymous";
-
-        const refImgObj = annotation.referenceImages.find(img => img.id === selectedImage);
-        if (!refImgObj) return;
-        img.src = refImgObj.src;
+        img.src = refImg.src;
 
         img.onload = () => {
-            const rect = imgRef.current.getBoundingClientRect();
 
-            const scaleX = img.naturalWidth / rect.width;
-            const scaleY = img.naturalHeight / rect.height;
+            const naturalW = img.naturalWidth;
+            const naturalH = img.naturalHeight;
+
+            const sx = crop.xPercent * naturalW;
+            const sy = crop.yPercent * naturalH;
+            const sw = crop.wPercent * naturalW;
+            const sh = crop.hPercent * naturalH;
+
 
             const canvas = document.createElement("canvas");
-            canvas.width = crop.w * scaleX;
-            canvas.height = crop.h * scaleY;
+            canvas.width = sw;
+            canvas.height = sh;
 
             const ctx = canvas.getContext("2d");
 
-            ctx.drawImage(
-                img,
-                crop.x * scaleX,
-                crop.y * scaleY,
-                crop.w * scaleX,
-                crop.h * scaleY,
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
+            ctx.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
 
             canvas.toBlob((blob) => {
                 if (!blob) return;
@@ -59,6 +55,7 @@ export default function CardCropButtons({ annotation, selectedImage, setShowCrop
 
 
     const handleDeleteImage = () => {
+        deleteAnnotationRefImage(annotation.id, selectedImage);
         setShowCrop(false);
     };
 
