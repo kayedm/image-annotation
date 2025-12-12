@@ -29,7 +29,6 @@
 
 .previewBox {
     overflow: hidden;
-    position: relative;
     border-radius: 8px;
     overscroll-behavior: contain;
     flex: 1;
@@ -46,7 +45,7 @@
 .image {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
     user-select: none;
     pointer-events: none;
 }
