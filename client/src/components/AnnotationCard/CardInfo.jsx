@@ -12,13 +12,13 @@ export default function CardInfo({annotation}) {
         updateAnnotationTitle(annotation.id, {title: e.target.value});
     }
 
-    const tool = toolLookup(annotation);
-    const Icon = tool.icon;
+        const tool = toolLookup?.(annotation);
+        const Icon = tool?.icon;
 
     return (
         <div className={styles.info}>
             <span className={styles.icon} data-label={annotation.label}>
-                <Icon size={20}/>
+                {Icon ? <Icon size={20}/> : null}
             </span>
 
             <div className={styles.text}>
