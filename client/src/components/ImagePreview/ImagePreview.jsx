@@ -24,7 +24,7 @@ export default function ImagePreview() {
 
     const handleClick = (e) => {
         if (didDrag.current) return;
-        if (!image || !selectedTool) return;
+        if (!image || !selectedTool || didDrag.current) return;
 
         const pointCoords = getPointCoords(e);
         if (!pointCoords) return;
@@ -40,10 +40,9 @@ export default function ImagePreview() {
 
     return (<div className={styles.container}>
         {!image ? <ImagePreviewUpload/> : (<div
-            className={styles.previewBox}
-            {...handlers}
+            className={styles.previewBox}{...handlers}
         >
-            <div className={styles.imageWrapper} onClick={handleClick}
+            <div className={styles.imageWrapper}  onClick={handleClick}
                  style={{
                      transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`, transformOrigin: "top left",
                  }}>
