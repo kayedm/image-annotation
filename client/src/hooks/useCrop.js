@@ -21,7 +21,6 @@ export default function useCrop({didDrag, isCropping, setCropPoints, setIsCroppi
         setCropPoints(prev => [prev[0], cropPoint]);
     }
 
-
     return {
         handleClick,
         handleMouseMove,
