@@ -5,15 +5,19 @@ import {imageStore} from "../../store/imageStore.js";
 
 export default function CardInfo({annotation}) {
 
+    const tool = toolLookup?.(annotation);
+    const Icon = tool?.icon;
     const updateAnnotationTitle = imageStore(state => state.updateAnnotationTitle);
     const deleteAnnotation = imageStore(state => state.deleteAnnotation);
+
 
     function handleTitleChange(e) {
         updateAnnotationTitle(annotation.id, {title: e.target.value});
     }
 
-        const tool = toolLookup?.(annotation);
-        const Icon = tool?.icon;
+    function handleDelete () {
+     deleteAnnotation(annotation.id);
+    }
 
     return (
         <div className={styles.info}>
@@ -32,7 +36,7 @@ export default function CardInfo({annotation}) {
 
             <button
                 className={styles.deleteBtn}
-                onClick={() => deleteAnnotation(annotation.id)}
+                onClick={handleDelete}
             >
                 <Trash2 size={15}/>
             </button>

@@ -22,7 +22,7 @@ export default function ToolMenu() {
                     </button>
                 ))}
             </div>
-            <button className={styles.hideBtn} onClick={toggleHidePoints}
+            <button onClick={toggleHidePoints}
                     className={hidePoints ? styles.active : ""}> Hide Points
             </button>
         </div>
