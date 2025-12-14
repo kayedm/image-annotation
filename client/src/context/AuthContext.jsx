@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useEffect} from "react";
 
-const AuthContext = createContext;
+const AuthContext = createContext(null);
 
 export function AuthProvider({children}) {
     const [user, setUser] = React.useState(null);
