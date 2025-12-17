@@ -8,8 +8,16 @@ export default function CardCropPreview({referenceImages, selectedImage, cropPoi
 
     const [isCropping, setIsCropping] = useState(false);
     const {handlers, offset, scale, didDrag} = usePanZoom();
-    const {handleClick} = useCrop({didDrag, isCropping, setCropPoints, setIsCropping});
+    const {onMouseDown, onMouseMove} = useCrop({didDrag, isCropping, setCropPoints, setIsCropping});
     const previewImage = referenceImages.find(img => img.id === selectedImage);
+
+    function handleMouseMove(e) {
+        if(!isCropping) {
+           handlers.onMouseMove(e);
+            return;
+        }
+        onMouseMove(e);
+    }
 
     return (
         <div className={styles.container}>
@@ -23,7 +31,8 @@ export default function CardCropPreview({referenceImages, selectedImage, cropPoi
                         transformOrigin: "top left",
                     }}
                     {...handlers}
-                    onClick={handleClick}
+                    onMouseMove={handleMouseMove}
+                    onClick={onMouseDown}
                 >
                     <img src={previewImage?.src} alt={"Preview Image"} className={styles.image} draggable={false}
                          ref={imgRef}/>
