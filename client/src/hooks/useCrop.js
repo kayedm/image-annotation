@@ -2,7 +2,7 @@ import {getLocalCoords} from "../utils/coords.js";
 
 export default function useCrop({didDrag, isCropping, setCropPoints, setIsCropping}) {
 
-    function handleClick(e) {
+    function handleMouseDown(e) {
         const cropPoint = getLocalCoords(e)
         if (didDrag.current) return;
         if (!isCropping) {
@@ -22,7 +22,7 @@ export default function useCrop({didDrag, isCropping, setCropPoints, setIsCroppi
     }
 
     return {
-        handleClick,
-        handleMouseMove,
+        onMouseDown: handleMouseDown,
+        onMouseMove: handleMouseMove,
     }
 }
