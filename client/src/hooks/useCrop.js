@@ -3,13 +3,12 @@ import {getLocalCoords} from "../utils/coords.js";
 export default function useCrop({didDrag, isCropping, setCropPoints, setIsCropping}) {
 
     function handleMouseDown(e) {
-        const cropPoint = getLocalCoords(e)
         if (didDrag.current) return;
+        const cropPoint = getLocalCoords(e)
         if (!isCropping) {
             setCropPoints([cropPoint]);
             setIsCropping(true)
-        }
-        if (isCropping) {
+        } else {
             setCropPoints(prev => [prev[0], cropPoint]);
             setIsCropping(false)
         }
