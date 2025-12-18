@@ -60,7 +60,6 @@ export default function usePanZoom() {
 
         setScale(newScale);
         setOffset(newOffset);
-
     };
 
     return {
