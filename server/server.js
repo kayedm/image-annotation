@@ -70,14 +70,10 @@ function auth(req, res, next) {
     }
 
     try {
-        jwt.verify(token, SECRET, (err, decoded) => {
-            if (err) {
-                return res.status(401).json({message: "Invalid token"});
-            }
+        const decoded = jwt.verify(token, SECRET);
+        req.user = decoded;
+        next();
 
-            req.user = decoded;
-            next();
-        });
     } catch(e) {
         return res.status(401).json({message: "Unauthorized"});
     }
@@ -85,16 +81,6 @@ function auth(req, res, next) {
 
 app.get('/me', auth, (req, res) => {
     res.json({user: req.user});
-})
-
-app.get('/annotation', auth, (req, res) => {
-    try {
-        const userId = req.user.userId;
-        
-        res.json({annotation});
-    } catch (error) {
-        console.error(error);
-    }
 })
 
 app.get('/', (req, res) => {
