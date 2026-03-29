@@ -25,7 +25,7 @@ app.post("/login", (req, res) => {
     const {username, password} = req.body;
 
     try {
-        if (username !== demoUser.username && password !== demoUser.password) {
+        if (username !== demoUser.username || password !== demoUser.password) {
             return res.status(401).json({message: "Invalid username or password"});
         }
         const token = jwt.sign(
