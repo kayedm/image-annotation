@@ -1,6 +1,7 @@
 import styles from './ToolMenu.module.css'
 import {tools} from '../Data/tools.jsx'
 import {imageStore} from "../../store/imageStore.js";
+import {EyeOff} from "lucide-react";
 
 export default function ToolMenu() {
 
@@ -23,7 +24,7 @@ export default function ToolMenu() {
                 ))}
             </div>
             <button onClick={toggleHidePoints}
-                    className={hidePoints ? styles.active : ""}> Hide Points
+                    className={hidePoints ? styles.active : ""}> <EyeOff size={14}/>
             </button>
         </div>
     );
