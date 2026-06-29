@@ -23,6 +23,7 @@ export default function CardCropPreview({referenceImages, selectedImage, cropPoi
         <div className={styles.container}>
             <div
                 className={styles.previewBox}
+                {...handlers}
             >
                 <div
                     className={styles.imageWrapper}
@@ -30,7 +31,6 @@ export default function CardCropPreview({referenceImages, selectedImage, cropPoi
                         transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
                         transformOrigin: "top left",
                     }}
-                    {...handlers}
                     onMouseMove={handleMouseMove}
                     onClick={onMouseDown}
                 >
