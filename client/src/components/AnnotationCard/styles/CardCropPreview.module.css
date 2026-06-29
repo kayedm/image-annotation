@@ -34,9 +34,10 @@
 }
 
 .cropBox {
+    background-color: var(--color-green-bg);
+    opacity: 50%;
     position: absolute;
-    border: 2px solid black;
-    outline: 2px solid #ffffff;
-    border-radius: 1px;
+    border: 2px #278647 solid;
+    border-radius: 2px;
     pointer-events: none;
 }
