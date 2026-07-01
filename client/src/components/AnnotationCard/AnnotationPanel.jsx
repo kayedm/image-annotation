@@ -2,13 +2,20 @@ import Card from './Card.jsx';
 import styles from './styles/Panel.module.css'
 import {imageStore} from "../../store/imageStore.js";
 import {Button} from "react-bootstrap";
+
 export default function AnnotationPanel() {
 
     const annotations = imageStore(state => state.annotations);
     const buildPayload = imageStore(state => state.buildPayload);
 
+
     function saveAnnotation() {
-        const blob = new Blob([buildPayload()], {type: 'application/json'});
+
+        const payload = buildPayload();
+
+        if (payload.image === null) return;
+
+        const blob = new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'});
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
